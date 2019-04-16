@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PEOPLE</title>
+</head>
+<body>
+<a th:href="@{/person}">添加成员</a>
+<div th:each="person:${people}">
+    <h4 th:text="${person.id}"></h4>
+    <h1 th:text="${person.email}"></h1>
+    <h1 th:text="${person.name}"></h1>
+    <h1 th:text="${person.sex}"></h1>
+</div>
+
+</body>
+</html>

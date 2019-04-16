@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>论坛 发布</title>
+	<body>
+
+    <form method="post" th:action="@{/addArticle}">
+        <label>标题：</label><br>
+        <input type="text" name="title"><br>
+        <label>类型：</label><br>
+        <select name="type">
+            <option value ="0">问答</option>
+            <option value ="1">经验分享</option>
+        </select><br>
+        <label>内容：</label>
+        <input type="text" name="content"><br>
+        <input type="hidden" name="date" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
+        <input th:value="${session.getAttribute('userId')}" name="userId" type="hidden">
+        <button type="submit">发表</button>
+    </form>
+
+	</body>
+</html>

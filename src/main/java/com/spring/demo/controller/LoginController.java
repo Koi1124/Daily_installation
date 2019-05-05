@@ -24,7 +24,7 @@ public class LoginController {
         return "ttzj/login";
     }
 
-    @PostMapping(value = "/newLogin")
+    @PostMapping(value = "/login")
     public String login(User user,HttpSession session,Map<String,Object> map) {
         String name=user.getName();
         if (userServiceImp.isExist(name)&&
@@ -34,22 +34,6 @@ public class LoginController {
         }else {
             map.put("msg","用户密码错误");
             return "ttzj/login";
-        }
-    }
-
-
-    // for test
-    @PostMapping(value = "/login")
-    public String loginAction(@ModelAttribute(name = "info")Login login, Model model
-                , HttpSession session, Map<String,Object> map) {
-        String email=login.getEmail();
-        String password=login.getPassword();
-        if (email.equals("koixxx1124@gmail.com")&&password.equals("yyh1124")) {
-            session.setAttribute("loginUser",email);
-            return "redirect:/main.html";
-        } else {
-            map.put("msg","用户密码错误");
-            return "login";
         }
     }
 

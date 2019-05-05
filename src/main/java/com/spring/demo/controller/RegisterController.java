@@ -4,10 +4,12 @@ package com.spring.demo.controller;
 import com.spring.demo.entity.User;
 import com.spring.demo.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="攒机,在线攒机,攒机方案,电脑攒机,模拟攒机,组装电脑,diy组装电脑" />
+  <title>天天装机</title>
+  <base  target="_blank"/>
+  <link rel="stylesheet" href="index.css" th:href="@{/asserts/css/index.css}" />
+  <!-- link href="model1.css" rel="stylesheet" />
+  <link href="model2.css" rel="stylesheet" / -->
+</head>
+
+<body>
+<div th:fragment="menu">
+    <div class="navs-box clearfix">
+        <span class="logo" style="" ><img src="images/logo2.png" th:src="@{/asserts/img/logo2.png}"></span>
+        <div class="search-box">
+            <input id="search" type="text" class="skey" name="kword" placeholder="请输入关键词" data-source="" autocomplete="off">
+            <input id="submit" type="submit" class="sbtn" value="搜一搜">
+            <a class="sbtn login" th:href="@{/toLogin}" th:if="${#strings.isEmpty(session.user)}">登录</a>
+			<div style="display:inline-block;" th:if="${not #strings.isEmpty(session.user)}">
+				<div style="font-size: 16px;margin: 0px auto; margin-left: 10px; display:inline-block;height: 30px;">
+					<span th:text="${session.user}+'，您好！'">用户名，您好！</span>
+				</div>
+				<div style="display:inline-block;height: 30px;width: 30px;margin-bottom: -9px;  border: 1px solid #e36209; border-radius: 50% ;overflow: hidden" >
+					<a href="#" th:href="@{/userInfo(name=${session.user})}" id="userImg"><img src="img/user.png" th:src="@{${session.headImg}}" height="30" width="30"></a>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <!-- 菜单栏 -->
+    <div class="nav">
+        <div class="nav-box">
+            <ul class="navul">
+                <li id="menu_nav_index"><a class="active">模拟装机</a></li>
+                <li id="menu_nav_zhinao"><a target="_self" href="">装机指南</a></li>
+                <li id="menu_nav_askDiy"><a target="_blank" href="" th:href="@{/forum}">装机论坛</a></li>
+                <li id="menu_nav_Graphics"><a target="_blank" href="">配置天梯</a></li>
+                <li id="menu_nav_myplan"><a target="_self" href="">我的方案</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/main.css}" />
+</div>
+<!-- header -->
+
+
+<!-- 标签选择 -->
+<div class="parts">
+  <ul class="parts-list clearfix">	
+    <!-- li id="topSubSel_3" rel="3" relnum="8"><span>5000档</span></li>
+    <li id="topSubSel_2" rel="2" relnum="4"><span>6000档</span></li>
+    <li id="topSubSel_626" rel="626" relnum="2"><span>7000档</span></li>        
+    <li id="topSubSel_6" rel="6" relnum="4"><span>8000档</span></li>
+    <li id="topSubSel_10" rel="10" relnum="1"><span>9000档</span></li>
+    <li id="topSubSel_35" rel="35" relnum="1"><span>10000档</span></li>        
+    <li id="topSubSel_67" rel="67" relnum="1"><span>12000档</span></li>        
+    <li id="topSubSel_84" rel="84" relnum="4"><span>土豪专区</span></li -->
+    <li ><span>热门推荐</span></li>
+    <li ><span id="t1" onclick="change(1)">CPU</span></li>
+    <li ><span id="t2" onclick="change(2)">主板</span></li>
+    <li ><span id="t3" onclick="change(3)">内存</span></li>        
+    <li ><span id="t4" onclick="change(4)">硬盘</span></li>
+    <li ><span id="t5" onclick="change(5)">固态硬盘</span></li>
+    <li ><span id="t6" onclick="change(6)">显卡</span></li>        
+    <li ><span id="t7" onclick="change(7)">电源</span></li>        
+    <li ><span id="t8" onclick="change(8)">散热器</span></li>                  
+  </ul>	
+</div>
+
+<!-- body -->
+<div class="wrapper clearfix">
+  <!-- 左边栏（配置单） -->
+  <div class="zj-parts"> 
+	<div class="zj-parts-head" style="background: #e36209">
+	  我的配置单
+	</div>			
+	<ul>
+	  <li id="s1" rel="28">
+	    <h3>CPU<i></i></h3>
+	    <span id="pic1" class="pic pic1"></span>
+	    <div id="con1" class="zj-parts-con">请选择商品</div>
+	    <span id="link1" class="link-add" >添加</span>
+	    <span id="delete1" class="delete" onclick="funcDel(1)"></span>
+	  </li>
+	  <li id="s2" rel="5">
+		<h3>主板<i></i></h3>
+		<span id="pic2" class="pic pic2"></span>
+		<div class="zj-parts-con">请选择商品</div>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>			
+	  </li>
+	  <li id="s3" rel="3">
+		<h3>内存<i></i></h3>
+		<span id="pic3" class="pic pic3"></span>
+		<span class="zj-parts-con">请选择商品</span>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>
+	  </li>
+	  <li id="s4" rel="2">
+		<h3>硬盘</h3>
+		<span id="pic4" class="pic pic4"></span>
+		<span class="zj-parts-con">请选择商品</span>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>			
+	  </li>
+	  <li id="s5" rel="28">
+	    <h3>固态硬盘<i></i></h3>
+	    <span id="pic5" class="pic pic5"></span>
+	    <div class="zj-parts-con">请选择商品</div>
+	    <span class="link-add" >添加</span>
+	    <span class="delete"></span>
+	  </li>
+	  <li id="s6" rel="5">
+		<h3>显卡<i></i></h3>
+		<span id="pic6" class="pic pic6"></span>
+		<div class="zj-parts-con">请选择商品</div>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>			
+	  </li>
+	  <li id="s7" rel="3">
+		<h3>电源<i></i></h3>
+		<span id="pic7" class="pic pic7"></span>
+		<span class="zj-parts-con">请选择商品</span>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>
+	  </li>
+	  <li id="s8" rel="2">
+		<h3>散热器</h3>
+		<span id="pic8" class="pic pic8"></span>
+		<span class="zj-parts-con">请选择商品</span>
+		<span class="link-add" >添加</span>
+		<span class="delete"></span>			
+	  </li>	
+	  <li class="total">
+		<h3>共计0项</h3>
+		<span id="totalPrice">¥0</span>
+	  </li>
+    </ul>
+
+	<div class="other-msg">         
+      <div class="item mingcheng">
+        <p class="lable"><em>0/20</em><b>名称：<font>*</font></b></p>
+        <input type="text" id="name" class="name " value="" date-n="20"/>     
+      </div>
+      <div class="item shuoming">
+        <p class="lable"><em>0/200</em><b>说明：</b></p>
+        <textarea id="instruct" class="instruct " placeholder="和大家分享一下你的心得吧~" date-n="200"></textarea>    
+      </div>                     
+    </div>     
+    <div class="btn-box">
+      <a id="publish" class="publish" onclick="publish()">发表</a>
+      <a class="empty" onclick="clearAll()">清空</a>
+    </div>
+  </div>
+  <!-- end左边栏（配置单） -->
+
+  <!-- 右边栏（条件选择+列表） -->
+  <div class="zj-lists">	
+    <div class="conditions">
+
+  	  <!--div class="list-title">
+        <div id="J_CityArea" class="list-title-inner clearfix" rel-sid="28">
+          <h3><font>CPU</font></h3>          
+        </div>        
+      </div>  
+            
+      <div id="J_ManuFilter" class="filter-brand filter-brand-multi">
+        <strong class="filter-type">推荐品牌：</strong>
+        <div id="J_ParamBrand" class="brand-hot brand-list" style="display: block;">
+          <span class="all active" reldate="0" >不限</span>
+          <a href="javascript:void(0);" target="_self" class="intel" relen="intel" reldate="125">Intel</a>
+          <a href="javascript:void(0);" target="_self" class="amd" relen="amd" reldate="55">AMD</a>
+        </div>    
+      </div>
+
+      <div id="priceItem" class="filter-item filter-price">
+        <strong class="filter-type">价格区间：</strong>
+        <div id="J_ParamPrice" class="param-value-list">
+          <span reldate="noPrice" class="all active">不限</span>   
+          <a href="javascript:void(0);" target="_self" reldate="0">500元以下</a>
+          <a href="javascript:void(0);" target="_self" reldate="500">500-1499元</a>
+          <a href="javascript:void(0);" target="_self" reldate="1500">1500元以上</a>
+        </div>
+      </div -->
+       
+      <!-- 样式填充，不可删 -->
+      <!-- div class="more-filter"></div -->
+      
+      <!-- 列表 标题-->
+      <div class="sort-box clearfix">
+        <div class="small-page">
+          <span class="small-page-prev">&nbsp;</span>
+          <span class="small-page-active"><b>1</b>/<b id="page"></b></span>
+          <a href="javascript:;" target="_self" class="small-page-next">&nbsp;</a>
+        </div>      
+        <span class="total totalNum">共 <b id="info"></b> 款</span>
+        <div class="sort">
+          <h3><font>CPU</font></h3>
+          <!--a href="javascript:;" target="_self" class="active" reldate="1"><strong>最热</strong></a-->
+          <!-- a href="javascript:;" target="_self" class="priceOrder hovera" reldate="4"><strong>价格 <font class="down">&darr;</font></strong></a>
+           <a href="javascript:;" target="_self" class="priceOrder hovera" reldate="4"><strong>价格 <font class="up">&uarr;</font><strong></a -->
+        </div>
+      </div>  
+      
+      <!-- 列表 主体+翻页 -->
+      <div class="list-box" style="display: block;">
+      <!-- 列表 主体 -->
+	    <div class="plist" th:each="cpu:${session.cpus}">
+        <!-- 一个硬件模块 -->
+		    <div id="1-1" class="pitem clearfix s_1233484 p_1233484 ">
+			    <div class="pic">
+		          <a href="" class="">
+                <img id="img1-1" src="https://2a.zol-img.com.cn/product/193_120x90/18/ceLz5Thur7Dqc.jpg" th:src="${cpu.src}" alt="Intel 酷睿i9 9900K">
+              </a>
+              <!-- div class="function-v3">
+                <label><i></i>加入对比栏</label>
+        	  </div -->                  
+            </div>                   
+            <div class="price-box">
+              <span id="price1-1" class="price"><p th:text="${cpu.price}"></p></span>
+			  <a onclick="add(1,1)" id="add1-1" class="add">+加入配置单</a>   
+		    </div>
+            <div class="pro-intro">                  
+			  <h3>
+			    <a href="" target="_blank" title="Intel 酷睿i9 9900K" class="" th:text="${cpu.cpuName}">Intel 酷睿i9 9900K</a>
+			  </h3>
+			  <div class="paramet">
+			    <span title="LGA 1151 ">插槽类型：<em><p th:text="${cpu.caozaleixing}"></p> </em></span>
+			    <span title="3.6GHz ">CPU主频：<em><p th:text="${cpu.zhupin}"></p></em></span>
+				<span title="5GHz ">动态加速频率：<em><p th:text="${cpu.zuidaruipin}"></p></em></span>
+				<span title="16MB ">二级缓存：<em><p th:text="${cpu.erjihuancun}"></p></em></span>
+				<span title="八核心  十六线程">核心数量：<em><p th:text="${cpu.hexinshuliang}+' '+${cpu.xianchengshu}"></p></em></span>
+			  </div>	
+			</div>
+		  </div>
+      <!-- end 一个硬件模块 -->
+
+		</div>
+		<!-- end 列表 主体 -->				
+						
+		<!-- 列表 翻页 -->			
+		<div class="page-box">
+		  <div id="pagebar" class="pagebar">
+			  <span id="page1" class="sel" onclick="nextPage(1)">1</span>
+			  <span id="nextpage" onclick="nextPage(-1)">下一页</span>
+		  </div>    
+		</div>
+
+	  </div><!-- end 列表 主体+翻页-->
+	</div>
+  </div><!-- end 右边栏（条件选择+列表） -->
+
+  <script type="text/javascript" src="index.js" th:src="@{/asserts/js/index.js}"></script>
+</div>
+
+</body>
+</html>

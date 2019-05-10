@@ -1,0 +1,587 @@
+body {
+    font: 12px/1.5 "Microsoft YaHei";
+    color: #666;
+    background: #fff;
+}
+
+.parts{
+	width: 1200px;
+    margin: 0 auto;
+    padding-bottom:50px;
+}
+.parts-list {
+    position: relative;
+    margin: 20px 0 20px -10px;
+    font-size: 14px;
+}
+.parts-list li {
+    position: relative;
+}
+.parts-list>li {
+    float: left;
+    width: 123px;
+    line-height: 34px;
+    text-align: center;
+    margin-left: 11px;
+    background-color: #fff;
+}
+.parts-list>li>span {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #E7E7E7;
+    height: 34px;
+    overflow: hidden;
+}
+.parts-list>li>.choosed {
+   border: 1px solid #e36209;
+}
+.parts-list>li.active>span {
+    border-color: #3791ED;
+}
+.zj-parts .total h3 {
+    width: 60px;
+}
+.zj-parts .total span {
+    float: right;
+    margin-top: 10px;
+}
+.zj-parts .other-msg {
+    padding: 20px 0 0 20px;
+}
+.other-msg .item {
+    margin-bottom: 20px;
+}
+.other-msg .item .lable {
+    margin: 0 20px 8px 0;
+    color: #666;
+}
+.other-msg .item .lable em {
+    float: right;
+    color: #333;
+}
+.other-msg .item .lable b {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+.other-msg .item .lable font, .item .inst {
+    color: #f33;
+}
+.other-msg .item .name, .instruct, .item .code {
+    border: 1px solid #e6e6e6;
+}
+.other-msg .item .name {
+    width: 460px;
+    height: 28px;
+    line-height: 28px;
+}
+.item .instruct, .item .name, .item .code {
+    border-radius: 3px;
+}
+.item .instruct, .item .name, .item .code {
+    border-radius: 3px;
+}
+.instruct {
+    width: 440px;
+    height: 92px;
+    resize: none;
+    padding: 9px;
+}
+.btn-box {
+    height: 50px;
+    padding: 10px 0;
+    text-align: center;
+}
+.btn-box .publish {
+    width: 245px;
+    margin: 0;
+}
+.btn-box a, .btn-box span {
+    display: inline-block;
+    height: 40px;
+    width: 95px;
+    border: 1px solid #e36209;
+    color: #e36209;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.btn-box .empty {
+    border-color: #e36209;
+    color: #e36209;
+}
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+.zj-parts {
+    width: 498px;
+    float: left;
+    border: #E7E7E7 1px solid;
+}
+.zj-parts-head {
+    background-color: #3791ED;
+    color: #fff;
+    font-size: 16px;
+    line-height: 45px;
+    text-align: center;
+}
+.zj-login {
+    line-height: 24px;
+    padding: 5px 10px;
+}
+.zj-parts ul {
+    border-bottom: 1px solid #E7E7E7;
+}
+.zj-parts li:hover, .zj-parts li.active {
+    background-color: #F9F9F9;
+}
+.zj-parts li {
+    border-top: 1px solid #E7E7E7;
+    height: 40px;
+    padding: 12px 20px;
+    position: relative;
+    vertical-align: top;
+}
+.zj-parts h3 {
+    float: left;
+    width: 45px;
+    font: 14px/22px 'Microsoft YaHei';
+    margin-top: 10px;
+}
+.parts-head i, .parts-list span i, .zj-parts i {
+    color: #f00;
+    font-style: normal;
+}
+.pic1 {
+    background-position: -45px -245px;
+}
+.pic2 {
+    background-position: 0 -105px;
+}
+.pic3 {
+    background-position: -45px -105px;
+}
+.pic4 {
+    background-position: 0 -150px;
+}
+.pic5 {
+    background-position: -45px -150px;
+}
+.pic6 {
+    background-position: 0 -195px;
+}
+.pic7 {
+    background-position: 0 -245px;
+}
+.pic8 {
+    background-position: 0 -295px;
+}
+.zj-parts .pic {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 0 10px;
+    background-image: url(images/s.png);
+}
+.zj-parts .pic.img {
+    width: 60px;
+    margin: 0;
+    background: none;
+}
+.zj-parts .pic.img img {
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+}
+.zj-parts .zj-parts-con {
+    text-align: center;
+    line-height: 40px;
+    float: left;
+    width: 260px;
+    color: #999;
+}
+.zj-parts .black{
+    color: black;
+}
+.zj-parts .link-add {
+    color: #0A4FA1;
+    float: right;
+    line-height: 40px;
+    cursor: pointer;
+}
+.zj-parts .red{
+    color: red;
+}
+.zj-parts li:hover .delete, .zj-parts li.active .delete {
+    display: block;
+}
+.zj-parts .delete {
+    position: absolute;
+    right: 0;
+    top: 27px;
+    width: 20px;
+    height: 20px;
+    background: url(images/s.png) -70px -508px no-repeat;
+    cursor: pointer;
+    display: none;
+}
+.zj-lists {
+    width: 680px;
+    float: right;
+}
+#totalPrice{
+  font-size: 16px;
+  color: red;
+}
+.list-title {
+    zoom: 1;
+    padding: 0 0 2px 0;
+    height:40px;
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-bottom: 0;
+    position: relative;
+    z-index: 9;
+}
+.list-title-inner {
+    padding: 0 20px 8px;
+}
+.list-title-inner h3 {
+    float: left;
+    margin: 10px 0 0;
+    padding: 0 20px 0 0;
+    font: bold 16px 'Microsoft YaHei';
+}
+.list-title-inner h3 font {
+    color: #f33;
+}
+.param-filter {
+    border: 1px solid #e6e6e6;
+}
+.filter-brand {
+    max-height: 186px;
+    overflow: hidden;
+    _height: 66px;
+}
+.filter-item, .filter-brand, .filter-other {
+    position: relative;
+    padding: 0 66px 0 90px;
+    zoom: 1;
+    z-index: 5;
+    border-bottom: 1px dashed #e6e6e6;
+    z-index: 1;
+}
+.filter-selected .filter-type, .filter-item .filter-type, .filter-brand .filter-type, .filter-other .filter-type {
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 90px;
+    height: 18px;
+    font: 12px/18px arial;
+    color: #666;
+    text-align: right;
+}
+.param-value-list, .brand-list, .cond-list {
+    padding: 3px 16px 3px 52px;
+    position: relative;
+    zoom: 1;
+    overflow: hidden;
+    line-height: 26px;
+}
+.param-value-list .all, .filter-brand .brand-list .all {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 3px;
+    margin: 6px 0 0 -43px;
+}
+.param-value-list .active, .param-value-list a:hover, .filter-brand .brand-list .active, .filter-brand .brand-list a:hover {
+    background-color: #e36209;
+    color: #fff;
+    text-decoration: none;
+}
+.param-value-list a, .filter-brand .brand-list a, .param-value-list .null, .filter-brand .brand-list .null {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 3px;
+    margin: 6px 12px 6px 0;
+    white-space: nowrap;
+}
+.more-filter {
+    position: relative;
+    margin: 0 0 20px 0;
+    height: 28px;
+    border: 1px solid #f0f0f0;
+    border-top: 0 none;
+    background: #f5f5f5;
+    text-align: center;
+}
+.sort-box {
+    border: 1px solid #e6e6e6;
+    background: #fafafa;
+    height: 35px;
+}
+.small-page {
+    float: right;
+    padding: 5px 5px;
+    height: 25px;
+    color: #666;
+    font-size: 0;
+}
+.small-page span.small-page-prev {
+    background-position: 0 -46px;
+}
+.small-page span, .small-page a {
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    overflow: hidden;
+    vertical-align: top;
+}
+.small-page-prev, .small-page-next {
+    width: 26px;
+}
+.small-page .small-page-active {
+    font-size: 12px;
+}
+.small-page span, .small-page a {
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    overflow: hidden;
+    vertical-align: top;
+}
+.small-page-active b {
+    color: #f33;
+}
+.small-page a.small-page-next {
+    background-position: -78px -46px;
+}
+.sort-box .total {
+    float: right;
+    height: 24px;
+    line-height: 24px;
+    padding: 7px 0 7px 10px;
+    white-space: nowrap;
+    color: #999;
+}
+.sort-box .total b {
+    color: #f33;
+    margin: 0 2px 0;
+}
+
+strong, b {
+    font-weight: bold;
+}
+.sort h3 {
+    //float: left;
+    margin: 10px 10px 0;
+    padding: 0 20px 0 0;
+    font: bold 16px 'Microsoft YaHei';
+}
+.sort h3 font {
+    color: #e36209;
+}
+.sort .active {
+    position: relative;
+    z-index: 2;
+    height: 25px;
+    //margin: -1px 0 -1px -1px;
+    padding: 5px 18px;
+    color: #fff;
+    background: #e36209;
+    border-color: #e36209;
+}
+.sort a, .sort span {
+    float: left;
+    margin-left: -1px;
+    padding: 7px 18px;
+    height: 24px;
+    border-left: 1px solid #fafafa;
+    border-right: 1px solid #fafafa;
+    //font: 12px/2 arial;
+    font-size: 14px;
+    color: #666;
+}
+.sort .down {
+    //background-position: -42px -20px;
+  //font-size: 16px;
+}
+.sort i {
+    float: left;
+    margin: 8px 0 0 4px;
+    width: 7px;
+    height: 9px;
+    _display: inline;
+}
+.list-box {
+    zoom: 1;
+    display: none;
+}
+.list-box .plist {
+    height: auto;
+    margin-bottom: 30px;
+}
+.pitem {
+    position: relative;
+}
+
+.pitem {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    height:120px;
+}
+.pitem .pic {
+    width: 120px;
+    overflow: hidden;
+    float: left;
+}
+.pitem .pic a {
+    position: relative;
+    display: block;
+    left: 0;
+    //top: 5px;
+}
+.pitem .pic a img {
+    position: static !important;
+    display: block;
+}
+.function-v3 {
+    border: 1px solid #E7E7E7;
+    border-radius: 2px;
+    line-height: 32px;
+    background-color: #fff;
+    margin-top: 5px;
+}
+.function-v3 label {
+    display: block;
+    padding-left: 40px;
+    position: relative;
+    cursor: pointer;
+}
+.function-v3 i {
+    position: absolute;
+    left: 22px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    font: 0/0 arial;
+}
+.price-box {
+    float: right;
+    width: 106px;
+    position: relative;
+}
+.price-box .price {
+    display: block;
+    color: #f33;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 34px;
+}
+.price-box .add, .price-box .joined {
+    display: block;
+    width: 106px;
+    height: 36px;
+    color: #fff;
+    font-size: 14px;
+     text-align: center;
+    background-color:#e36209;
+    border-radius: 3px;
+    line-height: 36px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.price-box .joined {
+    background-color: #ccc;
+    text-align: center;
+}
+.price-box .add i {
+    display: inline-block;
+    //width: 10px;
+    height: 10px;
+    margin: 0 5px 0 10px;
+}
+.pro-intro {
+    margin: 0 106px 0 132px;
+}
+.pro-intro h3 {
+    height: 24px;
+    font: 100 12px/24px 'Microsof YaHei';
+
+    overflow: hidden;
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin-bottom: 4px;
+}
+.pro-intro h3 a {
+    font-size: 14px;
+    color: #e36209;
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 10px;
+}
+.paramet span {
+    display: inline-block;
+    height: 20px;
+    color: #999;
+    width: 210px;
+    line-height: 20px;
+
+}
+.paramet span em {
+    color: #333;
+}
+.page-box {
+    position: relative;
+    zoom: 1;
+    color: black;
+}
+.pagebar {
+    font-size: 14px;
+    font-family: arial;
+    line-height: 32px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.pagebar span.sel, .pagebar span.historySel {
+    font-family: arial;
+}
+.pagebar .sel, .pagebar a:hover {
+    background: #e36209;
+    color: #fff;
+    border-color: #e36209;
+}
+.pagebar span, .pagebar .sel, .pagebar .historySel {
+    display: inline-block;
+    border: 1px solid #e36209;
+    padding: 0 7px;
+    height: 32px;
+    min-width: 20px;
+    _width: 20px;
+    white-space: nowrap;
+    margin: 0 3px 0 2px;
+    vertical-align: top;
+    _vertical-align: baseline;
+    cursor: pointer;
+    //color: #e36209;
+}
+.pagebar span {
+    margin: 0 3px 0 2px;
+}
+#nextpage{
+    display: inline-block;
+    border:1px solid #e36209;
+    padding: 0 7px;
+    height: 32px;
+    margin-left: 8px;
+    cursor: pointer;
+}

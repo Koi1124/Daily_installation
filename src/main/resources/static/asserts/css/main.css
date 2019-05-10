@@ -1,0 +1,96 @@
+body{
+      background-color:#f5f5fa;
+    color: #6d6d6d;
+}
+a{
+color:#6d6d6d; 
+text-decoration : none;
+}
+
+
+* {
+    margin:0;
+    padding:0;
+ }
+
+.navs-box {
+    width: 1200px;
+
+    margin: 0 auto;
+
+}
+.logo {
+
+}
+.navs-box .search-box {
+    float: right;
+    margin-top: 20px;
+    height: 30px;
+}
+.navs-box .skey {
+    float: left;
+    padding: 4px;
+    height: 22px;
+    width: 284px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 1px solid #ccc;
+    border-right: 0 none;
+    font: 14px/20px "Microsoft YaHei";
+    color: #999;
+}
+.navs-box .sbtn {
+    border: 0 none;
+    float: left;
+    width: 70px;
+    height: 32px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-bottom: 3px;
+    font: 14px/30px 'Microsoft YaHei',arial;
+    color: #fff;
+    cursor: pointer;
+    background: #e36209;
+}
+.navs-box .login{
+    margin-left:20px;
+    text-align: center;
+    border-radius: 15px;
+}
+input:focus
+{
+  outline: 0; 
+}
+
+.nav {
+    background-color: #24292e;
+}
+.nav .nav-box {
+    width: 1200px;
+    height: 38px;
+    margin: 0 auto;
+}
+.nav .navul {
+    line-height: 38px;
+    float: left;
+}
+.nav .navul li {
+    float: left;
+}
+.nav .navul a {
+    padding: 0 14px;
+    color: #fffefe;
+    font-size: 16px;
+    display: block;
+}
+
+div, i {
+    margin: 0;
+    padding: 0;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}

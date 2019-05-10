@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>文章标题</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="detail.css" th:href="@{/asserts/css/detail.css}" />
+</head>
+<body>
+<div th:insert="~{ttzj/homepage :: menu}"></div>
+<div class="nav-header"></div>
+<div class="main">
+<div class="main-left">
+<div class="main-header">
+   <label style="font-size: 25px;" th:text="${article.title}">标题</label><br><br>
+   <label style="font-size: 15px;" th:text="${article.date}">yyyy-MM-dd</label><br>
+   <label style="font-size: 15px;" th:text="'阅读量：'+${article.count}">阅读量:11</label>
+   <hr style="border:2px dashed #0000fff"/>
+</div>
+<div class="article">
+   <p th:utext="${article.content}">
+   </p>
+</div>
+</div>
+<div class="coment"></div>
+<div class="main-right">
+    <label>发布人</label>
+      <hr style="border:2px dashed #0000fff"/>
+ <div class="imgbox">
+  <div class="img">
+     <img src="user.png" th:src="${writer.src}" width="100" height="100">
+  </div>
+ </div>
+ <div class="info">
+ <a href="" th:text="${writer.name}" th:href="@{/userInfo(name=${writer.name})}">用户名</a><br>
+     <label>注册时间：2019/5/4</label>
+</div>
+</div>
+</div>
+</body>
+</html>

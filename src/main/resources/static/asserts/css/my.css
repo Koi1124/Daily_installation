@@ -1,0 +1,102 @@
+.left{
+	margin-left:80px;
+	float: left;
+	margin-top: 20px;
+	width: 23%;
+	margin-bottom: 10px;
+	background-color: #fff;
+}
+.infotable{
+	width: 80%;
+	padding:20px;
+	text-align: left;
+}
+
+.right{
+   float: right;
+   margin-top: 20px;
+   width: 64%;
+}
+.imgbox{
+   text-align: center;
+    margin:20px auto;
+  overflow: hidden;
+  height: 85px;
+  width: 85px;
+  border: 1.5px solid #c4c4c4;
+  border-radius :50%;
+  background-color: #fff;
+}
+.info{
+   text-align: center;
+   padding-left: 30px;
+}
+.articleList{
+	padding:25px 30px;
+    font-size: 15px;
+    color: #676a6d;
+	margin-right:135px;
+    background-color: #fff;
+}
+.projectList{
+	border-bottom: 1px solid transparent;
+	border-radius: 8px;
+    box-sizing: border-box;
+    margin-top:30px;
+    margin-right:135px;
+    padding:35px 40px;
+    background-color: #fff;
+}
+.project{
+    padding-top:10px;
+}
+.prohead{
+	height:40px;
+	border: 1px solid #c4c4c4;
+	border-radius:5px 5px 0 0 ;
+}
+.txt{
+	padding-left: 12px;
+	padding-top: 8px;
+    float: left;
+}
+.btnbox{
+	padding-right: 12px;
+	padding-top: 8px;
+    float: right;
+}
+.shbtn{
+	padding: 4px 10px;
+	background-color: #e36209;
+	border: none;
+	color: #fff;
+}
+.atable{
+	width: 100%;
+	text-align: left;
+    background-color: transparent;
+    border-collapse:separate;
+}
+.atable th{
+   padding: 8px 2px;
+   height: 20px;
+	padding-left: 5px;
+}
+.atable td {
+	 padding: 10px 2px;
+}
+.ptable{
+	text-align: center;
+	width: 100%;
+    background-color: transparent;
+    border-collapse:collapse;
+}
+.ptable th{
+	 padding: 8px 2px;
+	width: 12%;
+}
+.ptable td {
+	height: 100px;
+	 padding: 10px 2px;
+	 border: 1px solid black;
+}

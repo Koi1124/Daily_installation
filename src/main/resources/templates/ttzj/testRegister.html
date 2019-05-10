@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>注册-天天装机</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="forum.css" th:href="@{/asserts/css/register.css}" />
+</head>
+<body>
+<div class="nav-header">
+   <div class="logo">
+      <img src="computer1.png" th:src="@{/asserts/img/computer1.png}" />
+   </div>
+</div>
+  <div class="registerbox">
+      <h1 data-color="red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></h1>
+       <form method="post" th:action="@{/doRegister}">
+        <input type="text" name="name" class="txt" placeholder="请设置用户名"><br>
+        <input type="password" name="password" id="pwd" class="txt" placeholder="请设置密码"><br>
+        <input type="password" name="repassword" id="pwd1" class="txt" placeholder="请重新输入密码" onkeyup="validate()">
+        <br><span id="tishi"></span><br>
+        <input type="hidden" name="src">
+       <button type="submit" id="button" class="btn">注册</button>
+     </form>
+  </div>
+</body>
+<script>
+function validate() {
+    var pwd1 = document.getElementById("pwd").value;
+    var pwd2 = document.getElementById("pwd1").value;
+ 
+<!-- 对比两次输入的密码 -->
+    if(pwd1 == pwd2)
+     {
+        document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
+        document.getElementById("button").disabled = false;
+     }
+else {
+        document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+        document.getElementById("button").disabled = true;
+     }
+}
+</script>
+</body>
+</html>

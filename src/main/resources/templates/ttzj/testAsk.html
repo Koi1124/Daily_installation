@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>发布-天天装机</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="add_ask.css" th:href="@{/asserts/css/ask.css}" />
+</head>
+<body>
+<div th:insert="~{ttzj/homepage :: menu}"></div>
+<div class="nav-header"></div>
+<div class="main">
+   <div class="main-header"><a href="" class="first">装机论坛</a>&gt;<span>发布</span></div>
+   <hr style="border:1px dashed #0000fff"/>
+   <div class="articleInfo">
+    <form  method="post" th:action="@{/forum/save}" id="form1" name="form1" >
+       <br> <label>标题：</label>  
+        <input type="text" name="title" class="title"  placeholder="请输入标题"><br><br>
+        <label>类型：</label>
+        <select name="type" class="type">
+            <option value ="0">问答</option>
+            <option value ="1">经验分享</option>
+        </select><br><br>   
+        <div class="contentBox">
+        <div class="contentTit"><label>内容：</label></div>
+        <div id="div1" class="toolbar"></div>
+        <div id="div2" class="text">
+        </div></br>
+        <input type="hidden" name="content" id="content">
+        <!--content存放文本编辑框中内容 -->
+        <input type="hidden" name="date" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
+        <input type="hidden" th:value="${session.user}" name="userName">
+        <input type="hidden" name="count" th:value="0">
+        </div>
+        <button name="btn" onclick="submitContent()" class="btn">发表</button>
+    </form>
+   </div>
+</div>
+</body>
+<!--提问引入富文本框-->
+    <script type="text/javascript" src="wangEditor/js/wangEditor.min.js" th:src="@{/asserts/js/wangEditor.min.js}"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor;
+        var editor = new E('#div1', '#div2');
+        editor.customConfig.zIndex=100;
+        editor.customConfig.menus = [
+            'head',  // 标题
+            'bold',  // 粗体
+            'fontSize',  // 字号  
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'link',  // 插入链接
+            'justify',  // 对齐方式
+            'quote',  // 引用
+            'image',  // 插入图片
+            'undo',  // 撤销
+            'redo'  // 恢复
+        ];
+        editor.customConfig.uploadImgShowBase64 = true;
+        editor.customConfig.showLinkImg = false;
+        editor.create()
+    </script>
+    <script>
+        function submitContent()
+        {
+            var str=editor.txt.html()
+            document.getElementById("content").value = str;
+            document.forms["form1"].submit();
+        }
+    </script>
+        <!--获取富文本的内容-->
+
+</body>
+</html>

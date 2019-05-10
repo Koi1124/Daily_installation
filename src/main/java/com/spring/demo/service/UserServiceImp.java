@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -40,6 +41,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User findById(String name) {
-        return userRepository.getOne(name);
+        Optional<User> byId = userRepository.findById(name);
+        return byId.get();
     }
 }

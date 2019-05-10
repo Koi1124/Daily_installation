@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>论坛-天天装机</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="forum.css" th:href="@{/asserts/css/forum.css}"/>
+</head>
+<body>
+<div th:insert="~{ttzj/homepage :: menu}"></div>
+<div class="nav-header"></div>
+<div class="main">
+<div class="main-left">
+<div class="main-header">
+   <a href="testAsk.html" th:href="@{/forum/ask}" ><img src="add.png" th:src="@{asserts/img/add.png}"></a>
+      <hr style="border:1px dashed #0000fff"/>
+</div>
+
+<form>
+<div class="tb1">
+  <table class="ltable">
+    <tr class="show_th">
+      <th width="60%">文章标题</th>
+      <th width="15%" >发布时间</th>
+      <th width="10%">类型</th>
+      <th width="9%">访问量</th>
+     </tr>
+   <tr class="show_tr" th:each="article:${articlesByDate}">
+      <td class="tdtitle"><a href="testDetail.html" th:text="${article.title}" th:href="@{/forum/detail(id=${article.articleId})}"></a></td>
+      <td class="tdtime" th:text="${article.date}"></td>
+      <td class="tdtype" th:text="${article.type}"></td>
+      <td class="tdcount" th:text="${article.count}"><img src="eye.png" th:src="@{asserts/img/eye.png}"></td>
+     </tr>
+    </table>
+</div>
+ <div class="pagebox">
+ 
+  
+</div>
+</form>
+</div>
+</div>
+<div class="main-right">
+<form>
+  <img class="img" src="hot.png" th:src="@{asserts/img/hot.png}" width="40" height="40"><span>实时热点</span>
+  <hr style="border:1px dashed #0000fff"/>
+  <table class="rtable" th:each="article:${articlesByCount}">
+   <tr>
+      <th width="50%"><a href="#">标题</a></th>
+      <th width="20%">访问量</th>
+     </tr>
+      <tr>
+      <td th:text="${article.title}"><img src="first.png" th:src="@{asserts/img/first.png}"><a href="#" th:href="@{/articleDetail}"></a></td>
+      <td class="tdcount" th:text="${article.count}"><img src="eye.png" th:src="asserts/img/eye.png"></td>
+     </tr>
+  </table>
+  </form>
+</div>
+</div>
+</body> 
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    var len;         //总行数
+    var page;        //总页数
+    len= $(".ltable").find("tr").length-1 ;
+    var num = 15;      //每页显示行数
+    var pageCount= Math.ceil(len/num); //总页数
+    $(function(){     
+        for (var i = 1; i<= pageCount; i++) {
+           $(".pagebox").append('<span><input type="button" class="pagecount" id="'+i+'" value="'+i+'"/ ></span>');
+        }
+        displayPage(1);
+         $(".pagecount").click(function(){
+        $a = $(this).attr("id");
+        displayPage($a);
+        });
+});
+
+ function displayPage(curPage1){  
+ var begin=(curPage1-1)*num;//起始记录号
+ var end = begin + num;
+  if(end > len ) end=len;
+   console.log("  begin:"+begin+"   end:"+end);
+     $(".show_tr").hide();
+     $(".show_tr").each(function(i){
+         if(i>=begin && i<end)//显示第page页的记录
+             {
+             $(".show_th").show();
+             $(this).show();
+             }         
+     });
+
+ }
+
+        
+</script>
+</body>
+</html>

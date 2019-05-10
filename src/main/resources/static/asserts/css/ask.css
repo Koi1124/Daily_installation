@@ -1,0 +1,51 @@
+.main{
+      margin-top: 20px;
+    border-radius: 3px;
+    margin-left:10%;
+    margin-right: 10%;
+    background-color: #fff; 
+}
+.main-header{
+    padding: 13px;
+}
+.articleInfo{
+    padding-right: 10%;
+    padding-left:10%;
+    padding-bottom: 30px;
+}
+.title{ 
+ padding:2px;
+font-size: 16px;
+ width: 55%;
+ height: 30px;
+
+}
+.type{
+     padding:2px;
+     font-size: 16px;
+    width: 95px;
+    height: 30px;
+}
+.contentBox{
+margin-bottom: 15px;
+}
+.contentTit{
+    padding-bottom: 12px;
+}
+.toolbar {
+            border: 1px solid #ccc;  
+        }
+.text {
+            border: 1px solid #ccc;
+            overflow:hidden;
+            height: 400px;
+        }
+.btn{
+    width: 130px;
+    height: 35px;
+    font-size: 18px;
+    background-color: #e36209;
+    color: #fff;
+    border-radius: 4px;
+    border:none;
+}

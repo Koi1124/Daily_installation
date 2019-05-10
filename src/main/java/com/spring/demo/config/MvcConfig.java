@@ -16,24 +16,29 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/ttzj/login",
+                        "/main.html",
                         "/register",
-                        "/ttzj/register",
                         "/",
+                        "/toLogin",
                         "/login",
                         "/doRegister",
+                        "/forum",
+                        "/forum/detail",
                         "/login.html",
+                        "/asserts/**",
                         "/error");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/main.html").setViewName("ttzj/detail");
-        registry.addViewController("/login.html").setViewName("ttzj/login");
+        registry.addViewController("/main.html").setViewName("ttzj/homepage");
+        registry.addViewController("/login.html").setViewName("ttzj/testLogin");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+
     }
 
 }

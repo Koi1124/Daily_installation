@@ -1,0 +1,148 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>个人中心-天天装机</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="css/my.css" type="text/css" th:href="@{/asserts/css/my.css}" />
+</head>
+<body>
+<div th:insert="~{ttzj/homepage :: menu}"></div>
+<div>
+<div class="left">
+  <div class="imgbox">
+       <img src="img/test.jpg" th:src="@{/asserts/img/test.jpg}" width="85" height="85">
+ </div>
+ <div class="info">
+ <table class="infotable">
+  <tr>
+    <td>用户名：</td>
+     <td style="text-align: center;" th:text="${user.name}"></td>
+  </tr>
+  <tr>
+    <td>发表文章数：</td>
+     <td style="text-align: center;" th:text="${articleAmount}">5</td>
+  </tr>
+  <tr>
+    <td>发布方案数：</td>
+     <td style="text-align: center;">3</td>
+  </tr>
+</table>
+</div>
+ 
+</div>
+<div class="right">
+ <div class="articleList">
+    <h3>我的文章</h3>
+   <hr>
+   <table class="atable" id="atable">
+     <tr>
+	   <th width="60%">标题</th>
+	   <th width="15%">发布时间</th>
+	   <th width="15%">类型</th>
+	   </tr>
+	  <tr th:each="article:${articles}">
+       <td><a href="" th:href="@{/forum/detail(id=${article.articleId})}" th:text="${article.title}"> </a></td>
+	   <td th:text="${article.date}"></td>
+	   <td th:text="${article.type}">问答</td>
+	  </tr>
+	 </table>
+	 <span id="aspan" th:if="${#lists.isEmpty(articles)}">这家伙很懒，还没发表过文章呢  (￣o￣) . z Z</span>
+ </div>
+ <div class="projectList">
+   <h3>我的方案</h3>
+   <hr>
+   
+   <div class="project" name="project">
+      <div class="prohead">
+        <div class="txt">方案描述</div>
+        <div class="btnbox">
+        <input type="button" class="shbtn" onclick="showhide(this)" value="显示详细方案">
+        <input type = "hidden" name="proinput" value='111' />
+        </div>
+     </div>
+      <div name ="pro"  style="border:1px solid #ccc;display: none; overflow-x:scroll;">
+        <table class="ptable" name="ptable">
+           <tr>
+               <th>CPU</th>
+               <th>主板</th>
+               <th>内存</th>
+               <th>硬盘</th>
+               <th>固态硬盘</th>
+               <th>显卡</th>
+               <th>电源</th>
+               <th>散热器</th>  
+           </tr>
+           <tr>
+                <td><img src="img/CPU.png" width="65" height="65"><br>CPU</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>主板</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>内存</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>硬盘</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>固态硬盘</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>显卡</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>电源</td>
+                <td><img src="img/CPU.png" width="65" height="65"><br>散热器</td>
+           </tr>
+        </table>
+     </div>
+     <span id="pspan">这家伙很懒，还没生成过方案呢  (￣o￣) . z Z</span>
+   </div>
+ </div>
+</div>
+</div>
+</body> 
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+window.onload=function(){
+isAEmpty();
+isPEmpty();
+}
+function isAEmpty(){
+ var atable = $("#atable");
+ var aspan = $("#aspan");
+ var a = atable.find("tr").length;
+ if (a == 1) {
+ 	atable.css('display','none'); 
+    aspan.css('display','block'); 
+ }else{
+    aspan.css('display','none'); 
+ }
+};
+
+function isPEmpty(){
+ var pspan = $("#pspan");
+ var ptable=document.getElementsByName("project");
+ var p = ptable.length;
+ if (p == 0) {
+    pspan.css('display','block'); 
+
+ }else{
+    pspan.css('display','none'); 
+ }
+};
+$(function(){
+var proArr=document.getElementsByName("pro");
+var inputArr=document.getElementsByName("proinput");
+for(var i=0;i<proArr.length;i++){
+  proArr[i].id = "pro"+i;
+}
+for(var i=0;i<inputArr.length;i++){
+  inputArr[i].value = "pro"+i;
+}
+});
+function showhide(obj){
+   var input= $(obj).next().val();
+    var div1=document.getElementById(input);
+    if(div1.style.display=="block"){
+        div1.style.display="none";
+        obj.value = "显示方案详情";
+    }else{
+        div1.style.display="block";
+        obj.value = "隐藏方案详情";
+    }
+}
+</script>
+</body>
+</html>

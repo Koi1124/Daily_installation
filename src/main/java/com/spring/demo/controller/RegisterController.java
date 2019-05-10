@@ -19,17 +19,18 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String toRegister() {
-        return "ttzj/register";
+        return "ttzj/testRegister";
     }
 
     @PostMapping("/doRegister")
     public String doRegister(User user, Map<String,Object> map) {
         if (!userServiceImp.isExist(user.getName())) {
+            user.setSrc("/asserts/img/user.png");
             userServiceImp.registerUser(user);
             return "redirect:/login.html";
         } else {
             map.put("msg","用户名已存在");
-            return "/ttzj/register";
+            return "ttzj/testRegister";
         }
     }
 

@@ -2,6 +2,7 @@ package com.spring.demo.entity;
 
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Comment {
     private String content;
 
     @Column(nullable = false,name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date;
 
     public String getUserName() {

@@ -21,8 +21,19 @@ public class GPU {
     @Column(name = "3d_score")
     private int score;
 
+    @Column(name = "src")
+    private String src;
+
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
+    public String getSrc() {
+        return src;
     }
 
     public void setPrice(String price) {

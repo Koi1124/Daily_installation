@@ -1,4 +1,5 @@
-var joinedList = new Array(9);
+var joinedList = new Array(8);
+var list =[0,50, 96, 89, 45, 45, 34, 45];
 var totalPrice = 0;
 var chooseType = 1;
 var infoNumber = 0;
@@ -9,15 +10,17 @@ var choosePage = 1;
 
 
 function nextPage(no){
+  
   if(no == choosePage)
   	return;
   if(no == -1 && choosePage == pageNumber)
   	return;
   
+  console.log("nextpage: "+no);
   var start = (choosePage-1)*6+1;
   var end = Math.min(choosePage*6, infoNumber);
   for(var i=start; i<=end; i++){ 	
-  	  console.log("none: "+ i);
+  	  //console.log("none: "+ i);
   	  var one = document.getElementById(chooseType + "-" + i);
   	  one.style.display = "none";  	
   }
@@ -32,21 +35,37 @@ function nextPage(no){
   var start2 = (choosePage-1)*6+1;
   var end2 = Math.min(choosePage*6, infoNumber);
   for(var i=start2; i<=end2; i++){ 	
-  	  console.log("block: "+i);
+  	  //console.log("block: "+i);
   	  var one = document.getElementById(chooseType + "-" + i);
   	  one.style.display = "block";	
   }
 }
 
 
+function addclick (no){
+  console.log("addclick: "+no);
+  var mypage = document.getElementById("page"+no);
+  mypage.onclick =  function(){ nextPage(no); }
+}
+
+
 function changePage(type){
-  
   var info = document.getElementById("info");
   var page = document.getElementById("page");
   
-  for(var i=7; i<=infoNumber; i++){
-  	var one = document.getElementById(type + "-" + i);
-  	one.style.display = "none"; 
+  var start = (choosePage-1)*6+1;
+  var end = Math.min(choosePage*6, infoNumber);
+  for(var i=start; i<=end; i++){  
+      console.log("none: "+ i);
+      var one = document.getElementById(chooseType + "-" + i);
+      one.style.display = "none";   
+  }
+  
+  chooseType = type;
+  for(var i=1; i<=6; i++){    
+      console.log("block: "+i);   
+      var one = document.getElementById(type + "-" + i);
+      one.style.display = "block";  
   }
 
   info.innerHTML = infoNumber;
@@ -64,8 +83,9 @@ function changePage(type){
       var newpage =  document.createElement('span');
       newpage.innerHTML = i;
       newpage.id = "page"+i;
-      //newpage.onclick = nextPage(i);
+     
       pagebar.insertBefore(newpage, nextpage);
+      addclick(i);
   	}
   }
   else if(pageNumber < lastPage){
@@ -102,13 +122,14 @@ function ajax(type)
 function change(type){
   if(chooseType == type)
   	return;
-
-  ajax(type);
+  
   var old = document.getElementById("t" + chooseType);
   var t = document.getElementById("t" + type);
-  chooseType = type;
   old.className = '';  
   t.className = 'choosed';
+
+  infoNumber = list[type]; //这里要改成实际数量;
+  changePage(type);
 }
 
 
@@ -204,7 +225,7 @@ function publish(){
 
 
 function clearAll(){
-  for(var i=1; i<9; i++){
+  for(var i=1; i<8; i++){
     if(joinedList[i] != undefined && joinedList[i] != -1){
     	funcDel(i);
     }
@@ -215,6 +236,6 @@ function clearAll(){
 window.onload = function () {  
   var t = document.getElementById("t1");
   t.className = 'choosed';
-  infoNumber = 7; //这里要改成实际数量;
+  infoNumber = 50; //这里要改成实际数量;
   changePage(1);
 }

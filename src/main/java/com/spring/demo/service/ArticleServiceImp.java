@@ -46,4 +46,9 @@ public class ArticleServiceImp implements  ArticleService{
     public List<Article> articleByUserName(String name) {
         return articleRepository.findByUserName(name);
     }
+
+    @Override
+    public Article updateArticle(Article article) {
+        return articleRepository.save(article);
+    }
 }

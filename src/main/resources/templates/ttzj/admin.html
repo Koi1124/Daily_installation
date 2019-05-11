@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>管理员界面-天天装机</title>
+    <meta name="applicable-device" content="pc">
+<link rel="stylesheet" href="css/admin.css" type="text/css" th:href="@{/asserts/css/admin.css}" />
+<link rel="stylesheet" href="css/main.css" type="text/css" th:href="@{/asserts/css/main.css}" />
+</head>
+<body>
+<div class="nav-header">
+   <div class="logo">
+      <img src="img/computer1.png" th:src="@{/asserts/img/computer1.png}" />
+   </div>
+</div>
+
+
+<div class="aresult">
+   <span id="aspan" style="font-size: 25px;">文章记录</span>
+
+   <table class="atable" id="atable" >
+      <tr>
+          <th width="65%" >标题</th>
+          <th width="15%" >发布人</th>
+          <th width="20%"></th>
+      </tr>
+     <tr th:each="article:${articles}">
+          <td th:text="${article.title}">文章标题</td>
+          <td th:text="${article.userName}">用户名</td>
+          <td>
+          <form th:action="@{/admin/deleteArticle}" method="post">
+          <input type="hidden" name="articleId" th:value="${article.articleId}">
+          <input type="button" name="del" onclick="confirmDel(this)" class="dbtn" value="删除">
+          <input style="display: none;" type="submit" value="确认删除" class="confirmbtn" name="confirm">
+          </form>
+          </td>
+     </tr>
+   </table>
+</div>
+<div class="uresult">
+  <span id="uspan" style="font-size: 25px;">用户记录</span>
+  <table class="utable" id="utable" th:each="user:${users}">
+     <tr>
+        <td width="20%"><img src="img/test.jpg" th:src="${user.src}" height="40" width="40" style ="border-radius:50% ;border: 1px solid #6d6d6d;"></a></td>
+        <td width="50%" th:text="${user.name}">用户名</td>
+        <td width="20%">
+          <form th:action="@{/admin/deleteUser}" method="post">
+          <input type="hidden" name="name" th:value="${user.name}">
+          <input type="button" name="del" onclick="confirmDel(this)" class="dbtn" value="删除">
+          <input style="display: none;" type="submit" value="确认删除" class="confirmbtn" name="confirm">
+          </form>
+        </td>
+     </tr>
+     </table>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+function confirmDel(obj){
+   var isDel = $(obj).next();
+   if (obj.value == "删除") {
+   isDel.css('display','inline-block');
+   obj.value="取消"
+ }else{
+  isDel.css('display','none');
+   obj.value="删除"
+ }
+};
+</script>
+</body>
+</html>

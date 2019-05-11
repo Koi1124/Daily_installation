@@ -15,16 +15,29 @@
 </div>
 <div class="loginbox">
 <h1 data-color="red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></h1>
-  <form method="post" th:action="@{/login}">
+  <form method="post" action="" name="login">
     <input type="text" name="name" class="txt" placeholder="用户名"><br>
     <input type="password" name="password" class="txt" placeholder="密码"><br>
     <div class="btnbox">
-      <button type="submit" class="btn">登录</button><br>
-      <button class="btn">管理员登录</button><br>
+      <button class="btn" onclick="normal()">登录</button><br>
+      <button class="btn" onclick="abnormal()">管理员登录</button><br>
       <a th:href="@{/register}" class="link">新用户注册</a>
     </div>
   </form>
   </div>
 </body>
-</body>
+<script th:inline="javascript">
+    var login=[[@{/login}]]
+    var admin=[[@{/admin/login}]]
+    function normal() {
+        document.login.action=login;
+        document.login.submit();
+    }
+    function abnormal() {
+        document.login.action=admin;
+        document.login.submit();
+    }
+
+
+</script>
 </html>

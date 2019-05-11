@@ -4,38 +4,164 @@
     <meta charset="utf-8" />
     <title>文章标题</title>
     <meta name="applicable-device" content="pc">
-<link rel="stylesheet" href="detail.css" th:href="@{/asserts/css/detail.css}" />
+    <link rel="stylesheet" href="css/detail.css" th:href="@{/asserts/css/detail.css}" type="text/css" />
 </head>
 <body>
+
 <div th:insert="~{ttzj/homepage :: menu}"></div>
-<div class="nav-header"></div>
+
 <div class="main">
-<div class="main-left">
-<div class="main-header">
-   <label style="font-size: 25px;" th:text="${article.title}">标题</label><br><br>
-   <label style="font-size: 15px;" th:text="${article.date}">yyyy-MM-dd</label><br>
-   <label style="font-size: 15px;" th:text="'阅读量：'+${article.count}">阅读量:11</label>
-   <hr style="border:2px dashed #0000fff"/>
+    <div class="main-left">
+        <div class="articlebox">
+            <div class="main-header">
+                <label style="font-size: 25px;" th:text="${article.title}">标题</label><br><br>
+                <label style="font-size: 15px;" th:text="${article.date}">yyyy-MM-dd</label><br>
+                <label style="font-size: 15px;" th:text="'阅读量：'+${article.count}">阅读量:11</label>
+                <hr style="border:2px dashed #0000fff"/>
+            </div>
+            <div class="article">
+                <p th:utext="${article.content}"></p>
+            </div>
+        </div>
+        <div class="commentbox">
+            <div class="addcomment">
+                <form th:action="@{/forum/detail/comment}" method="post">
+                    <div class="imgbox2">
+                        <img src="img/test.jpg" th:src="@{/asserts/img/test.jpg}" width="45" height="45">
+                    </div>
+                    <input type="hidden" name="commentInfo" value="commentInfo"/>
+                    <input type="hidden" name="articleId" th:value="${article.articleId}">
+                    <input type="hidden" name="userName" th:value="${session.user}">
+                    <input type="hidden" name="date" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
+                    <div class="txtarea">
+                        <textarea class="txt" name="content" placeholder="发表你的看法..."></textarea>
+                    </div>
+                    <div class="btnbox">
+                        <button type="submit" id="send" class="sendbtn">发送</button>
+                    </div>
+                </form>
+            </div>
+            <hr style="margin:0 20px; ">
+            <h3 style="margin-left: 60px; padding: 20px 0; ">评论区</h3>
+            <hr style="margin:0 20px; ">
+            <div class="nocomm" style="padding:20px 70px;" th:if="${#lists.isEmpty(comments)}">
+                <h3>暂时还没人评论哟！快来发表你的看法吧(｡･ω･｡)ﾉ♡</h3>
+            </div>
+            <div class="commentlist" th:each="comment:${comments}" th:if="${not #lists.isEmpty(comments)}">
+
+                <!- 评论区第一条评论->
+                <div class="comm">
+                    <!- 主评论->
+                    <div class="maincomm">
+                        <div class="commimg">
+                            <a href="#" id="userImg"><img src="img/test.jpg"  height="30" width="30"></a>
+                        </div>
+                        <span style="vertical-align: top;" th:text="${comment.userName}">用户名</span>
+                        <div class="commtxt" name="commcount">
+                            <span class="maintxt" th:text="${comment.content}"> ：你是谁呢</span>
+                            <div class="subtxt"><span th:text="${comment.date}">评论时间</span>
+                                <input type="button"  class="subbtn" onclick="showhide(this)" value="回复TA"/>
+                                <input type = "hidden" name="commhide" value='111' />
+                            </div>
+                            <div class="subbox" name="subbox">
+                                <form th:action="@{/forum/detail/reply}" method="post">
+                                    <input type="hidden" name="articleId" th:value="${article.articleId}">
+                                    <input type="hidden" name="userName" th:value="${session.user}">
+                                    <input type="hidden" name="replyUserName"th:value="${comment.userName}">
+                                    <input type="hidden" name="parentCommentId" th:value="${comment.commentId}">
+                                    <input type="hidden" name="date" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
+                                    <input type="text" name="content" class="subinput" placeholder="发表你的看法...">
+                                    <input type="submit" class="subsend" name="" value="发表">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!- 盖楼回复->
+                    <div class="subcomm" th:each="subComment:${subComments.get(comment.commentId)}" th:if="${not #lists.isEmpty(subComments.get(comment.commentId))}">
+                        <div class="commimg">
+                            <a href="#" id="userImg"><img src="img/test.jpg" height="30" width="30"></a>
+                        </div>
+                        <span style="vertical-align: top;" th:text="${subComment.userName}">用户名</span>
+                        <span style="vertical-align: top;">回复</span>
+                        <div class="commimg">
+                            <a href="#" id="userImg"><img src="img/test.jpg" height="30" width="30"></a>
+                        </div>
+                        <span style="vertical-align: top;" th:text="${subComment.replyUserName}">用户名</span>
+                        <div class="commtxt" name="commcount">
+                            <span class="maintxt" th:text="${subComment.content}"> ：你是谁呢</span>
+                            <div class="subtxt"><span th:text="${subComment.date}">评论时间</span>
+                                <input type="button"  class="subbtn" onclick="showhide(this)" value="回复TA"/>
+                                <input type = "hidden" name="commhide" value='111' />
+                            </div>
+                            <div class="subbox" name="subbox">
+                                <form th:action="@{/forum/detail/reply}" method="post">
+                                    <input type="hidden" name="articleId" th:value="${article.articleId}">
+                                    <input type="hidden" name="userName" th:value="${session.user}">
+                                    <input type="hidden" name="replyUserName"th:value="${subComment.userName}">
+                                    <input type="hidden" name="parentCommentId" th:value="${comment.commentId}">
+                                    <input type="hidden" name="date" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
+                                    <input type="text" name="content" class="subinput" placeholder="发表你的看法...">
+                                    <input type="submit" class="subsend" name="" value="发表">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-right">
+        <label>发布人</label>
+        <hr style="border:2px dashed #0000fff"/>
+        <div class="imgbox">
+            <div class="img">
+                <img src="img/test.jpg" width="100" height="100">
+            </div>
+        </div>
+        <div class="info">
+            <a href="" th:href="@{/userInfo(name=${article.userName})}" th:text="${article.userName}">用户名</a><br>
+            <label>注册时间：2019/5/4</label>
+        </div>
+    </div>
+    <div class="newalist">
+        <!-展示最新近5篇文章 （随机也可以）右边太空了 加点元素->
+        <h3>最新文章</h3>
+        <hr>
+        <ul class="newa">
+            <li><a href="#">最新文章1标题</a></li>
+            <li><a href="#">最新文章2标题</a></li>
+            <li><a href="#">最新文章3标题</a></li>
+            <li><a href="#">最新文章4标题</a></li>
+            <li><a href="#">最新文章5标题</a></li>
+
+        </ul>
+    </div>
+
 </div>
-<div class="article">
-   <p th:utext="${article.content}">
-   </p>
-</div>
-</div>
-<div class="coment"></div>
-<div class="main-right">
-    <label>发布人</label>
-      <hr style="border:2px dashed #0000fff"/>
- <div class="imgbox">
-  <div class="img">
-     <img src="user.png" th:src="${writer.src}" width="100" height="100">
-  </div>
- </div>
- <div class="info">
- <a href="" th:text="${writer.name}" th:href="@{/userInfo(name=${writer.name})}">用户名</a><br>
-     <label>注册时间：2019/5/4</label>
-</div>
-</div>
-</div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var commArr=document.getElementsByName("subbox");
+        var countArr=document.getElementsByName("commhide");
+        for(var i=0;i<commArr.length;i++){
+            commArr[i].id = "com"+i;
+        }
+        for(var i=0;i<countArr.length;i++){
+            countArr[i].value = "com"+i;
+        }
+    });
+    function showhide(obj){
+        var input= $(obj).next().val();
+        var div1=document.getElementById(input);
+        if(div1.style.display=="block"){
+            div1.style.display="none";
+            obj.value = "回复TA";
+        }else{
+            div1.style.display="block";
+            obj.value = "收起";
+        }
+    }
+</script>
 </body>
 </html>

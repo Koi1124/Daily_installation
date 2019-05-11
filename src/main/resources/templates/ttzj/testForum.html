@@ -28,7 +28,8 @@
    <tr class="show_tr" th:each="article:${articlesByDate}">
       <td class="tdtitle"><a href="testDetail.html" th:text="${article.title}" th:href="@{/forum/detail(id=${article.articleId})}"></a></td>
       <td class="tdtime" th:text="${article.date}"></td>
-      <td class="tdtype" th:text="${article.type}"></td>
+      <td class="tdtype" th:if="${article.type}" th:text="'问答'"></td>
+      <td class="tdtype" th:unless="${article.type}" th:text="'经验分享'"></td>
       <td class="tdcount" th:text="${article.count}"><img src="eye.png" th:src="@{asserts/img/eye.png}"></td>
      </tr>
     </table>
@@ -46,11 +47,11 @@
   <hr style="border:1px dashed #0000fff"/>
   <table class="rtable" th:each="article:${articlesByCount}">
    <tr>
-      <th width="50%"><a href="#">标题</a></th>
+      <th width="50%">标题</th>
       <th width="20%">访问量</th>
      </tr>
       <tr>
-      <td th:text="${article.title}"><img src="first.png" th:src="@{asserts/img/first.png}"><a href="#" th:href="@{/articleDetail}"></a></td>
+      <a href="#" th:href="@{/forum/detail(id=${article.articleId})}"><td th:text="${article.title}"><img src="first.png" th:src="@{asserts/img/first.png}"></td></a>
       <td class="tdcount" th:text="${article.count}"><img src="eye.png" th:src="asserts/img/eye.png"></td>
      </tr>
   </table>

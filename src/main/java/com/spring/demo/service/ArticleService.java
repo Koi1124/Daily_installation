@@ -17,4 +17,6 @@ public interface ArticleService {
     List<Article> articleByUserName(String name);
 
     void removeArticle(String id);
+
+    Article updateArticle(Article article);
 }

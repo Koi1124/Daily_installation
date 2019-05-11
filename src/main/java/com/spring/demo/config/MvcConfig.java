@@ -23,16 +23,17 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/login",
                         "/doRegister",
                         "/forum",
-                        "/forum/detail",
                         "/login.html",
                         "/asserts/**",
+                        "/admin/**",
                         "/error");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/main.html").setViewName("ttzj/homepage");
+        //registry.addViewController("/main.html").setViewName("ttzj/homepage");
         registry.addViewController("/login.html").setViewName("ttzj/testLogin");
+        registry.addViewController("/detail.html").setViewName("ttzj/testDetail");
     }
 
     @Override

@@ -9,31 +9,49 @@
 <body>
 <div th:insert="~{ttzj/homepage :: menu}"></div>
 <div>
-<div class="left">
-  <div class="imgbox">
-       <img src="img/test.jpg" th:src="@{${user.src}}" width="85" height="85">
- </div>
- <div class="info">
- <table class="infotable">
-  <tr>
-    <td>用户名：</td>
-     <td style="text-align: center;" th:text="${user.name}"></td>
-  </tr>
-  <tr>
-    <td>发表文章数：</td>
-     <td style="text-align: center;" th:text="${articleAmount}">5</td>
-  </tr>
-  <tr>
-    <td>发布方案数：</td>
-     <td style="text-align: center;">3</td>
-  </tr>
-</table>
-</div>
- 
-</div>
+    <div class="left">
+        <div class="infobox">
+            <div class="imgbox">
+                <img src="img/test.jpg" th:src="@{${user.src}}" width="85" height="85">
+            </div>
+            <div class="info">
+                <table class="infotable">
+                    <tr>
+                        <td >用户名：</td>
+                        <td style="text-align: center;" th:text="${user.name}">我叫XXX</td>
+                    </tr>
+                    <tr>
+                        <td>发表文章数：</td>
+                        <td style="text-align: center;" th:text="${articleAmount}">5</td>
+                    </tr>
+                    <tr>
+                        <td>发布方案数：</td>
+                        <td style="text-align: center;" >3</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="changebtn" th:if="${#strings.equals(session.user,user.name)}">
+                <input type="button" class="cbtn" name="" onclick="showChangepwd(this)" value="修改密码"/>
+            </div>
+        </div>
+        <div class="changepwd" id="changebox">
+            <form id="pwdform" method="post" th:action="@{/userInfo/changePW}">
+                <!- 将该登录用户密码传进来保存 ->
+                <input type="hidden" name="truepwd" id="truepwd" value="1111" th:value="${user.password}">
+                <input type="password" name="pw" id="oldpwd" class="pwdtxt" placeholder="请输入密码"><br>
+                <input type="password" name="password" id="newpwd" class="pwdtxt" placeholder="请设置新密码"><br>
+                <input type="password" name="repassword" id="pwd2" class="pwdtxt" placeholder="请重新输入新密码" onkeyup="validate()">
+                <input type="hidden" name="name" th:value="${session.user}">
+                <input type="hidden" name="src" th:value="${session.headImg}">
+                <br><span id="tishi"></span><br>
+                <input type="button" name="" class="cbtn" onclick="IsSubmit()" value="确认修改" />
+            </form>
+        </div>
+    </div>
 <div class="right">
  <div class="articleList">
-    <h3>我的文章</h3>
+     <h3 th:if="${#strings.equals(session.user,user.name)}">我的文章</h3>
+     <h3 th:if="${not #strings.equals(session.user,user.name)}">TA的文章</h3>
    <hr>
    <table class="atable" id="atable">
      <tr>
@@ -44,15 +62,16 @@
 	  <tr th:each="article:${articles}">
        <td><a href="" th:href="@{/forum/detail(id=${article.articleId})}" th:text="${article.title}"> </a></td>
 	   <td th:text="${article.date}"></td>
-	   <td th:text="${article.type}">问答</td>
+	   <td th:text="'问答'" th:if="${article.type}">问答</td>
+       <td th:text="'经验分享'" th:unless="${article.type}">问答</td>
 	  </tr>
 	 </table>
 	 <span id="aspan" th:if="${#lists.isEmpty(articles)}">这家伙很懒，还没发表过文章呢  (￣o￣) . z Z</span>
  </div>
  <div class="projectList">
-   <h3>我的方案</h3>
+   <h3 th:if="${#strings.equals(session.user,user.name)}">我的方案</h3>
+   <h3 th:if="${not #strings.equals(session.user,user.name)}">TA的方案</h3>
    <hr>
-   
    <div class="project" name="project">
       <div class="prohead">
         <div class="txt">方案描述</div>
@@ -141,6 +160,45 @@ function showhide(obj){
     }else{
         div1.style.display="block";
         obj.value = "隐藏方案详情";
+    }
+}
+function showChangepwd(obj){
+    var div1=document.getElementById("changebox");
+    if(div1.style.display=="block"){
+        div1.style.display="none";
+        obj.value="修改密码";
+    }else{
+        div1.style.display="block";
+        obj.value="取消修改";
+    }
+}
+function validate() {
+    var pwd1 = document.getElementById("newpwd").value;
+    var pwd2 = document.getElementById("pwd2").value;
+
+    <!-- 对比两次输入的密码 -->
+    if(pwd1 == pwd2)
+    {
+        document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
+        //    document.getElementById("button").disabled = false;
+    }
+    else {
+        document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+        //     document.getElementById("button").disabled = true;
+    }
+}
+function IsSubmit()
+{
+    var oldpwd = document.getElementById("oldpwd").value;
+    var newpwd = document.getElementById("newpwd").value;
+    var truepwd = document.getElementById("truepwd").value;
+    if (oldpwd == "" ||newpwd == "") {
+        alert("密码不能为空");
+    }else if (oldpwd == truepwd) {
+        document.getElementById("pwdform").submit();
+        alert("修改成功！")
+    }else{
+        alert("密码错误，请重试！");
     }
 }
 </script>

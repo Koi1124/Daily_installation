@@ -29,6 +29,12 @@ public class Comment {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date;
 
+    @Column(name = "replyUser_name")
+    private String replyUserName;
+
+    @Column(name = "parentCommentId")
+    private String parentCommentId;
+
     public String getUserName() {
         return userName;
     }
@@ -67,5 +73,21 @@ public class Comment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getReplyUserName() {
+        return replyUserName;
+    }
+
+    public void setReplyUserName(String replyUserName) {
+        this.replyUserName = replyUserName;
+    }
+
+    public String getParentCommentId() {
+        return parentCommentId;
+    }
+
+    public void setParentCommentId(String parentCommentId) {
+        this.parentCommentId = parentCommentId;
     }
 }

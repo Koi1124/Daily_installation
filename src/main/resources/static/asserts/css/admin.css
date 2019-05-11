@@ -1,0 +1,74 @@
+body{
+    background-color:#fff;
+    color: #6d6d6d;
+
+}
+.nav-header{
+  padding-left: 135px;
+  height: 85px;
+  background-color: #090723;
+}
+.aresult{
+  margin-top: 15px;
+   margin-left: 135px;
+   margin-right: 135px;
+   background-color: #fff;
+   margin-bottom: 10px;
+   border-radius: 3px;
+   padding :20px 140px; 
+}
+.uresult{
+  margin-left: 135px;
+   margin-right: 135px;
+   background-color: #fff;
+   border-radius: 3px;
+    padding :20px 140px; 
+}
+.utable{
+  width: 475px;
+  margin-left:30px; 
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.atable{
+  width: 760px;
+  text-align: left;
+    background-color: transparent;
+    border-collapse:separate;
+}
+.atable th{
+   padding: 8px 2px;
+   height: 20px;
+  padding-left: 5px;
+}
+.atable td {
+   padding: 10px 11px;
+}
+.atable tr:nth-child(2n){
+background-color: #f5f5fa;
+}
+.utable tr:nth-child(2n){
+background-color: #f5f5fa;
+}
+.utable td{
+  padding-left: 10px; 
+  padding-top: 5px;
+}
+.utable tr td:first-child{
+  text-align: center;
+}
+.dbtn{
+  width: 60px;
+  margin-right: 2px;
+  border: none;
+  color: #6d6d6d;
+  padding:3px;
+  border-radius: 2px;
+}
+.confirmbtn{
+  background-color:#e36209;
+  border: none;
+  color: #fff;
+  padding:3px;
+  border-radius: 2px;
+}

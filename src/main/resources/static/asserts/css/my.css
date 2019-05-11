@@ -1,36 +1,40 @@
+
 .left{
 	margin-left:80px;
 	float: left;
 	margin-top: 20px;
 	width: 23%;
 	margin-bottom: 10px;
-	background-color: #fff;
 }
 .infotable{
 	width: 80%;
 	padding:20px;
 	text-align: left;
 }
-
-.right{
-   float: right;
-   margin-top: 20px;
-   width: 64%;
+.infobox{
+	padding-top: 15px;
+	background-color: #fff;
+	padding-bottom: 10px;
 }
 .imgbox{
-   text-align: center;
-    margin:20px auto;
+  text-align: center;
+  margin:20px auto;
   overflow: hidden;
   height: 85px;
   width: 85px;
   border: 1.5px solid #c4c4c4;
   border-radius :50%;
-  background-color: #fff;
 }
 .info{
    text-align: center;
    padding-left: 30px;
 }
+.right{
+   float: right;
+   margin-top: 20px;
+   width: 64%;
+}
+
 .articleList{
 	padding:25px 30px;
     font-size: 15px;
@@ -99,4 +103,30 @@
 	height: 100px;
 	 padding: 10px 2px;
 	 border: 1px solid black;
+}
+.changebtn{
+   text-align: center;
+    margin: 20px auto;
+}
+.cbtn{
+	height: 30px;
+	width: 100px;
+	border: none;
+	color: #6d6d6d;
+	border-radius: 3px;
+}
+.changepwd{
+	text-align: center;
+	margin-top: 10px;
+	padding:30px 40px;
+	background-color: #fff;
+	display: none;
+}
+.pwdtxt{
+	height: 25px;
+	width: 175px;
+	margin:5px;
+	padding: 3px;
+	border-radius: 3px;
+	border: 1px solid #6d6d6d;
 }

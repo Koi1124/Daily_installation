@@ -7,24 +7,25 @@
 }
 .main-header{
    text-align: center;
-   padding-top: 11px;
+   padding-top: 15px;
    padding-right: 18px;
 }
 .main-left{
   position: relative;
-  height: 700px;
-  background-color: #fff;
   border-radius: 10px;
-   float: left;
-   width: 75%;
-   margin-right: 15px;
-   padding-left: 10px;
-   margin-bottom: 10px;
+  float: left;
+  width: 75%;
+  margin-right: 15px;
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 .article{
     text-align: left;
     padding-left: 35px;
     padding-right: 35px;
+    padding-top: 25px;
+    padding-bottom: 40px;
+
 }
 .main{
     text-align: center;
@@ -36,7 +37,7 @@
    float: right;
    width: 20%;
    padding:10px;
-   height: 300px;
+   height: 250px;
 }
 .main-right span{
   font-size: 35px;
@@ -62,3 +63,137 @@
   font-size: 18px;
   line-height: 30px;
 }
+.articlebox{
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+.commentbox{
+  text-align: left;
+  padding-top: 10px;
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 10px;
+}
+.addcomment{
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: inline-block;
+
+}
+.txtarea{
+   margin-left:130px;
+   margin-top: -55px;
+  display: inline-block;
+}
+.txt{
+  width: 400px ;
+  height: 30px;
+  padding:10px 5px;
+  border-radius: 10px;
+  resize:none;
+}
+.imgbox2{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #c4c4c4;
+  margin-left: 60px;
+}
+.btnbox{
+  margin-left: 570px;
+  margin-top: -45px;
+}
+.sendbtn{
+  width: 100px;
+  height: 32px;
+    border-radius: 5px;
+    border: none;
+    background-color: #e36209;
+    color: #fff;
+    font-size: 16px;
+}
+.commentlist{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.comm{
+  margin:7px; 
+   border: none;
+   border-radius: 8px;
+   background-color: #f5f5fa;
+   padding-left: 20px;
+   padding-top: 10px;
+}
+.commimg{
+  display:inline-block;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #e36209;
+   border-radius: 50% ;
+   overflow: hidden;
+   margin-bottom: 27px;
+}
+.commtxt{
+  font-size: 16px;
+   vertical-align: top;
+   margin: 0px auto; 
+   margin-left: 10px; 
+   display:inline-block;
+}
+.maintxt{
+   padding-bottom: 4px;
+   padding-top: 4px;
+}
+.subtxt{
+  font-size: 11px;
+  padding-top: 5px;
+  margin-left: 15px;
+}
+.subbtn{
+  margin-left: 20px;
+  border:none;
+  background: none;
+  color: #6d6d6d;
+}
+.subcomm{
+   margin-left:50px;
+}
+.subbox{
+  margin-left: 15px;
+  background-color: #f5f5fa;
+ padding: 5px;
+ display: none;
+ margin-bottom: 5px;
+}
+.subinput{
+  height: 20px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 2px 3px;
+  width: 250px;
+  margin-right: 10px;
+}
+.subsend{
+  height: 25px;
+  width: 80px;
+  border: none;
+  border-radius: 4px; 
+  color: #6d6d6d;
+
+}
+.newalist{
+  margin-top: 20px;
+  text-align: left;
+    background-color: #fff;
+    border-radius: 10px;
+    float: right;
+    width: 20%;
+    padding:10px;
+}
+.newa{
+  padding-bottom: 15px;
+}
+.newa li{
+  padding-top:  15px;
+  }

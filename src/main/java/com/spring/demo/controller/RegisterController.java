@@ -28,6 +28,9 @@ public class RegisterController {
             user.setSrc("/asserts/img/user.png");
             userServiceImp.registerUser(user);
             return "redirect:/login.html";
+        } else if(user.getName().equals("admin")) {
+            map.put("msg","不能注册此名字");
+            return "ttzj/testRegister";
         } else {
             map.put("msg","用户名已存在");
             return "ttzj/testRegister";

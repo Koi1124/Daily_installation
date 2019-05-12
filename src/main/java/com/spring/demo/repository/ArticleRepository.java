@@ -8,4 +8,6 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article,String> {
 
     List<Article> findByUserName(String name);
+
+    List<Article> findByTitleLikeOrContentLike(String title,String content);
 }

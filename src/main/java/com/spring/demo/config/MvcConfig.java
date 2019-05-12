@@ -23,6 +23,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/login",
                         "/doRegister",
                         "/forum",
+                        "/search",
                         "/login.html",
                         "/asserts/**",
                         "/admin/**",

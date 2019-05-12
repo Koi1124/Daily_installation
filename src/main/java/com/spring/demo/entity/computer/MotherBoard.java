@@ -24,6 +24,9 @@ public class MotherBoard {
     @Column(name = "score")
     private double score;
 
+    @Column(name = "description")
+    private String description;
+
     public String getPrice() {
         return price;
     }
@@ -62,5 +65,13 @@ public class MotherBoard {
 
     public void setM_bName(String m_bName) {
         this.m_bName = m_bName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

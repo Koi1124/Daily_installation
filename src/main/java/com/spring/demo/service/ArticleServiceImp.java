@@ -51,4 +51,9 @@ public class ArticleServiceImp implements  ArticleService{
     public Article updateArticle(Article article) {
         return articleRepository.save(article);
     }
+
+    @Override
+    public List<Article> findByTitleOrContent(String kword) {
+        return articleRepository.findByTitleLikeOrContentLike(kword,kword);
+    }
 }

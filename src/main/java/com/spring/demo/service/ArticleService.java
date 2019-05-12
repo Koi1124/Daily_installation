@@ -19,4 +19,6 @@ public interface ArticleService {
     void removeArticle(String id);
 
     Article updateArticle(Article article);
+
+    List<Article> findByTitleOrContent(String kword);
 }

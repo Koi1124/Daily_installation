@@ -24,6 +24,9 @@ public class HDD {
     @Column(name = "score")
     private double score;
 
+    @Column(name = "description")
+    private String description;
+
     public void setScore(double score) {
         this.score = score;
     }
@@ -62,5 +65,13 @@ public class HDD {
 
     public void setHddName(String hddName) {
         this.hddName = hddName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -15,8 +15,9 @@
     <div class="navs-box clearfix">
         <span class="logo" style="" ><img src="images/logo2.png" th:src="@{/asserts/img/logo2.png}"></span>
         <div class="search-box">
-            <input id="search" type="text" class="skey" name="kword" placeholder="请输入关键词" data-source="" autocomplete="off">
-            <input id="submit" type="submit" class="sbtn" value="搜一搜">
+            <form th:action="@{/search}" method="get">
+                <input id="search" type="text" class="skey" name="kword" placeholder="请输入关键词" data-source="" autocomplete="off">
+                <input id="submit" type="submit" class="sbtn" value="搜一搜">
             <a class="sbtn login" th:href="@{/toLogin}" th:if="${#strings.isEmpty(session.user)}">登录</a>
 			<div style="display:inline-block;" th:if="${not #strings.isEmpty(session.user)}">
 				<div style="font-size: 16px;margin: 0px auto; margin-left: 10px; display:inline-block;height: 30px;">
@@ -26,6 +27,7 @@
 					<a href="#" th:href="@{/userInfo(name=${session.user})}" id="userImg"><img src="img/user.png" th:src="@{${session.headImg}}" height="30" width="30"></a>
 				</div>
 			</div>
+            </form>
 		</div>
     </div>
 
@@ -33,11 +35,12 @@
     <div class="nav">
         <div class="nav-box">
             <ul class="navul">
-                <li id="menu_nav_index"><a class="active">模拟装机</a></li>
+                <li id="menu_nav_index"><a class="active" th:href="@{/}">模拟装机</a></li>
                 <li id="menu_nav_zhinao"><a target="_self" href="">装机指南</a></li>
                 <li id="menu_nav_askDiy"><a target="_blank" href="" th:href="@{/forum}">装机论坛</a></li>
                 <li id="menu_nav_Graphics"><a target="_blank" href="">配置天梯</a></li>
-                <li id="menu_nav_myplan"><a target="_self" href="">我的方案</a></li>
+                <li ><a target="_self" href="" th:href="@{/whatever}" th:if="${#strings.isEmpty(session.user)}">个人中心</a></li>
+                <li id="menu_nav_myplan"><a target="_self" href="" th:href="@{/userInfo(name=${session.user})}" th:if="${not #strings.isEmpty(session.user)}">个人中心</a></li>
             </ul>
         </div>
     </div>
@@ -248,6 +251,7 @@
                         </h3>
                         <div class="paramet">
                             <span title="LGA 1151 " th:text="'得分：'+${motherboard.score}"><em>LGA 1151 </em></span>
+                            <span title="3.6GHz " th:text="'描述：'+${motherboard.description}"><em></em></span>
                         </div>
                     </div>
                 </div>
@@ -293,6 +297,7 @@
                         </h3>
                         <div class="paramet">
                             <span title="LGA 1151 " th:text="'得分：'+${hdd.score}"><em>LGA 1151 </em></span>
+                            <span title="3.6GHz " th:text="'描述：'+${hdd.description}"><em></em></span>
                         </div>
                     </div>
                 </div>
@@ -316,6 +321,7 @@
                         </h3>
                         <div class="paramet">
                             <span title="LGA 1151 " th:text="'得分：'+${ssd.score}"><em>LGA 1151 </em></span>
+                            <span title="3.6GHz " th:text="'描述：'+${ssd.description}"><em></em></span>
                         </div>
                     </div>
                 </div>

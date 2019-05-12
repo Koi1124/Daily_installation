@@ -1,39 +1,18 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>个人中心-天天装机</title>
+    <title>搜索结果-天天装机</title>
     <meta name="applicable-device" content="pc">
-<link rel="stylesheet" href="css/result.css" type="text/css" />
-<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="stylesheet" href="css/result.css" type="text/css" th:href="@{/asserts/css/result.css}" />
+<link rel="stylesheet" href="css/main.css" type="text/css" th:href="@{/asserts/css/main.css}" />
 </head>
 <body>
 <!-- header -->
-<div class="navs-box clearfix">
-  <span class="logo" style="" ><img src="img/computer1.png"></span>
-  <div class="search-box">
-    <input id="search" type="text" class="skey" name="kword" placeholder="请输入关键词" data-source="" autocomplete="off">
-    <input id="submit" type="submit" class="sbtn" value="搜一搜">
-    <input type="button" class="sbtn login" value="登录"></input>
-  </div>
-
-</div>
-
-<!-- 菜单栏 -->
-<div class="nav">
-  <div class="nav-box">
-    <ul class="navul">	   
-      <li id="menu_nav_index"><a class="active">模拟装机</a></li>
-      <li id="menu_nav_zhinao"><a target="_self" href="">装机指南</a></li>       
-      <li id="menu_nav_askDiy"><a target="_blank" href="">装机论坛</a></li>
-      <li id="menu_nav_Graphics"><a target="_blank" href="">配置天梯</a></li>
-      <li id="menu_nav_myplan"><a target="_self" href="">我的方案</a></li>    
-    </ul>     
-  </div>
-</div>
+<div th:insert="~{ttzj/homepage :: menu}"></div>
 
 
-<h3 style="margin-left: 13%;margin-top: 20px; margin-bottom: 10px;">共检索到<span>5</span> 条关于"<span>关键字</span>"的记录：</h3>
+<h3 style="margin-left: 13%;margin-top: 20px; margin-bottom: 10px;">共检索到<span th:text="${count}">5</span> 条关于"<span th:text="${keyword}">关键字</span>"的记录：</h3>
 <div class="aresult">
    <span id="aspan" style="font-size: 25px;">没有相关的文章记录 (￣o￣) . z Z</span>
    <table class="atable" id="atable">
@@ -41,22 +20,18 @@
           <th width="75%">标题</th>
           <th>发布人</th>
       </tr>
-     <tr>
-          <td>文章标题</td>
-          <td><a href="">用户名</a></td>
+     <tr th:each="article:${articles}">
+         <td><a th:href="@{/forum/detail(id=${article.articleId})}"><p th:text="${article.title}">文章标题</p></a></td>
+         <td><a th:href="@{/userInfo(name=${article.userName})}"><p th:text="${article.userName}">用户名</p></a></td>
      </tr>
    </table>
 </div>
 <div class="uresult">
   <span id="uspan" style="font-size: 25px;">没有相应的用户记录 (￣o￣) . z Z</span>
   <table class="utable" id="utable">
-     <tr>
-          <td width="20%"><a href=""><img src="img/test.jpg" height="40" width="40" style ="border-radius:50% ;border: 1px solid #6d6d6d;"></a></td>
-          <td width="60%"><a href="">用户名</a></td>
-     </tr>
-     <tr>
-          <td width="20%"><a href=""><img src="img/test.jpg" height="40" width="40" style ="border-radius:50% ;border: 1px solid #6d6d6d;"></a></td>
-          <td width="60%"><a href="">用户名</a></td>
+     <tr th:each="user:${users}">
+         <td width="20%"><a th:href="@{/userInfo(name=${user.name})}"><img src="img/test.jpg" th:src="${user.src}" height="40" width="40" style ="border-radius:50% ;border: 1px solid #6d6d6d;"></a></td>
+          <td width="60%" th:text="${user.name}">用户名</td>
      </tr>
      </table>
 </div>

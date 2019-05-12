@@ -219,10 +219,11 @@ textarea: focus{
 }
 .zj-parts li {
     border-top: 1px solid #E7E7E7;
-    height: 40px;
-    padding: 12px 20px;
+    height: 60px;
+    padding: 20px 20px;
     position: relative;
     vertical-align: top;
+    overflow: hidden;
 }
 .zj-parts h3 {
     float: left;

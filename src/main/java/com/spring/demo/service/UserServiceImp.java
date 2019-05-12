@@ -44,4 +44,9 @@ public class UserServiceImp implements UserService {
         Optional<User> byId = userRepository.findById(name);
         return byId.get();
     }
+
+    @Override
+    public List<User> findByIdLike(String name) {
+        return userRepository.findByNameLike(name);
+    }
 }

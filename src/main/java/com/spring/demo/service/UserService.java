@@ -1,9 +1,9 @@
 package com.spring.demo.service;
 
 import com.spring.demo.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     User registerUser(User user);
@@ -17,5 +17,7 @@ public interface UserService {
     boolean isExist(String name);
 
     User findById(String name);
+
+    List<User> findByIdLike(String name);
 
 }

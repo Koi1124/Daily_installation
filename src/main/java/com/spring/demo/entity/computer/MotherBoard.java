@@ -16,7 +16,7 @@ public class MotherBoard {
     private String m_bName;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @Column(name = "src")
     private String src;
@@ -27,11 +27,11 @@ public class MotherBoard {
     @Column(name = "description")
     private String description;
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

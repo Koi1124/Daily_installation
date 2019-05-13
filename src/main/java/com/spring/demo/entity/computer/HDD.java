@@ -19,7 +19,7 @@ public class HDD {
     private String src;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @Column(name = "score")
     private double score;
@@ -43,11 +43,11 @@ public class HDD {
         return src;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 

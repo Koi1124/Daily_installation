@@ -16,4 +16,9 @@ public class HDDServiceImp implements HDDService {
     public List<HDD> allHDD() {
         return hddRepository.findAll();
     }
+
+    @Override
+    public HDD findHDDByPrice(int price) {
+        return hddRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

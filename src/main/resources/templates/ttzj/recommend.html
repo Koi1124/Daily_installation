@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>个性化推荐-天天装机</title>
+    <meta name="applicable-device" content="pc">
+    <base  target="_blank"/>
+    <link rel="stylesheet" href="index.css" th:href="@{/asserts/css/index.css}" />
+</head>
+<body>
+<!-- header -->
+<div class="navs-box clearfix">
+  <span class="logo" style="" ><img src="img/computer1.png" th:src="@{/asserts/img/logo2.png}"></span>
+  <div class="search-box">
+    <input id="search" type="text" class="skey" name="kword" placeholder="请输入关键词" data-source="" autocomplete="off">
+    <input id="submit" type="submit" class="sbtn" value="搜一搜">
+    <input type="button" class="sbtn login" value="登录">
+  </div>
+
+</div>
+
+<!-- 菜单栏 -->
+<div class="nav">
+  <div class="nav-box">
+    <ul class="navul">	   
+      <li id="menu_nav_index"><a class="active">模拟装机</a></li>
+      <li id="menu_nav_zhinao"><a target="_self" href="">装机指南</a></li>       
+      <li id="menu_nav_askDiy"><a target="_blank" href="">装机论坛</a></li>
+      <li id="menu_nav_Graphics"><a target="_blank" href="">配置天梯</a></li>
+      <li id="menu_nav_myplan"><a target="_self" href="">我的方案</a></li>    
+    </ul>     
+  </div>
+</div>
+
+<div class="recommendlist">
+   <div class="need">
+   <h3>个性化推荐</h3><br>
+   <hr><br>
+   <form id="needform" class="needform" method="post" th:action="@{/recommendConfiguration}">
+     输入理想价位：<input type="text"  name="price" id="price" class="needtxt">元
+     <input type="button" name="" class="needbtn" value="提交" onclick="sendneed()">
+     <!-- js判断为整数后提交表单 提交在js里写了 -->
+   </form>
+   </div>
+   <div class="recommend" id="recommend" th:if="${not #strings.isEmpty(session.recommendConfiguration)}">
+   <h3>方案推荐列表</h3>
+   <br>
+   <span id="pspan">输入你的理性价位，为你量身定制方案</span>
+   <!- 两个hr之间的部分需要后台数据 ->
+   <hr>
+
+       <table class="ptable" name="ptable">
+           <tr>
+               <th>CPU</th>
+               <th>主板</th>
+               <th>内存</th>
+               <th>硬盘</th>
+               <th>固态硬盘</th>
+               <th>显卡</th>
+               <th>电源</th>
+           </tr>
+           <tr>
+                <td><img th:src="${session.recommendConfiguration.cpuImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.cpuName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.motherBoardImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.motherBoardName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.memoryImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.memoryName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.hddImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.hddName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.ssdImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.ssdName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.gpuImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.gpuName}"></p> </td>
+                <td><img th:src="${session.recommendConfiguration.powerSupplyImg}" width="65" height="65"><br><p th:text="${session.recommendConfiguration.powerSupplyName}"></p> </td>
+           </tr>
+        </table>
+   <hr>
+  
+  
+   </div>
+
+</div>
+
+<style type="text/css">
+.need{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:#fff;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.needtxt{
+  height: 25px;
+  width: 75px;
+  margin:5px;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid #6d6d6d;
+}
+.needbtn{
+height: 30px;
+  width: 100px;
+  border: none;
+  color: #fff;
+  background-color: #e36209;
+  border-radius: 3px;
+  margin-left:10px;
+}
+.recommendlist{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}
+.recommend{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:#fff;
+
+}
+.ptable{
+  table-layout:fixed;
+  margin-bottom:20px;
+  text-align: center;
+  width: 100%;
+    backgound-color: transparent;
+    border-collapse:collapse;
+}
+.ptable th{
+   padding: 8px 2px;
+  width: 12%;
+}
+.ptable td {
+  font-size: 12px;
+  width: 12%;
+   padding: 10px 2px;
+   border: 1px solid black;
+    word-wrap:break-word;
+}
+</style>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+window.onload=function(){
+isPEmpty();
+}
+function sendneed(){
+  var value= document.getElementById("price").value;
+  var reg = /^[1-9]\d*$|^0$/;
+  if (reg.test(value)==true) {
+    document.getElementById("needform").submit();
+    document.getElementById("recommend").style.display=="block";
+  }else if (value == "") {
+    alert("请输入您的理想价位")
+  }else{
+    alert("价格只允许为整数，请重新输入")
+    document.getElementById("price").value="";
+    document.getElementById("price").focus();
+  }
+  document.forms["needForm"].submit();
+}
+function isPEmpty(){
+ var pspan = $("#pspan");
+ var ptable=document.getElementsByName("ptable");
+ var p = ptable.length;
+ if (p == 0) {
+    pspan.css('display','block'); 
+
+ }else{
+    pspan.css('display','none'); 
+ }
+};
+</script>
+</html>

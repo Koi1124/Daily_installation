@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <td>发布方案数：</td>
-                        <td style="text-align: center;" >3</td>
+                        <td style="text-align: center;" th:text="${session.configurations.size()}"></td>
                     </tr>
                 </table>
             </div>
@@ -73,36 +73,36 @@
    <h3 th:if="${not #strings.equals(session.user,user.name)}">TA的方案</h3>
    <hr>
    <div class="project" name="project">
-      <div class="prohead">
-        <div class="txt">方案描述</div>
-        <div class="btnbox">
-        <input type="button" class="shbtn" onclick="showhide(this)" value="显示详细方案">
-        <input type = "hidden" name="proinput" value='111' />
-        </div>
+     <div th:each="configuration,configurationState:${session.configurations}">
+     <div class="prohead">
+       <div class="txt"><p th:text="${configuration.configurationName}"></p></div>
+       <div class="btnbox">
+         <input type="button" class="shbtn" onclick="showhide(this)" value="显示详细方案">
+         <input type = "hidden" name="proinput" value='111' />
+       </div>
      </div>
-      <div name ="pro"  style="border:1px solid #ccc;display: none; overflow-x:scroll;">
-        <table class="ptable" name="ptable">
-           <tr>
-               <th>CPU</th>
-               <th>主板</th>
-               <th>内存</th>
-               <th>硬盘</th>
-               <th>固态硬盘</th>
-               <th>显卡</th>
-               <th>电源</th>
-               <th>散热器</th>  
-           </tr>
-           <tr>
-                <td><img src="img/CPU.png" width="65" height="65"><br>CPU</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>主板</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>内存</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>硬盘</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>固态硬盘</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>显卡</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>电源</td>
-                <td><img src="img/CPU.png" width="65" height="65"><br>散热器</td>
-           </tr>
-        </table>
+     <div name ="pro"  style="border:1px solid #ccc;display: none; overflow-x:scroll;">
+       <table class="ptable" name="ptable">
+         <tr>
+           <th>CPU</th>
+           <th>主板</th>
+           <th>内存</th>
+           <th>硬盘</th>
+           <th>固态硬盘</th>
+           <th>显卡</th>
+           <th>电源</th>
+         </tr>
+         <tr>
+           <td id="cpu"><img th:src="${configuration.cpuImg}" width="65" height="65"><br><p th:text="${configuration.cpuName}"></p></td>
+           <td id="motherBoard"><img th:src="${configuration.motherBoardImg}" width="65" height="65"><br><p th:text="${configuration.motherBoardName}"></p></td>
+           <td id="memory"><img th:src="${configuration.memoryImg}" width="65" height="65"><br><p th:text="${configuration.memoryName}"></p></td>
+           <td id="hdd"><img th:src="${configuration.hddImg}" width="65" height="65"><br><p th:text="${configuration.hddName}"></p></td>
+           <td id="ssd"><img th:src="${configuration.ssdImg}" width="65" height="65"><br><p th:text="${configuration.ssdName}"></p></td>
+           <td id="gpu"><img th:src="${configuration.gpuImg}" width="65" height="65"><br><p th:text="${configuration.gpuName}"></p></td>
+           <td id="powerSupply"><img th:src="${configuration.powerSupplyImg}" width="65" height="65"><br><p th:text="${configuration.powerSupplyName}"></p></td>
+         </tr>
+       </table>
+     </div>
      </div>
      <span id="pspan">这家伙很懒，还没生成过方案呢  (￣o￣) . z Z</span>
    </div>
@@ -200,6 +200,10 @@ function IsSubmit()
     }else{
         alert("密码错误，请重试！");
     }
+}
+
+function ShowConfiguration() {
+
 }
 </script>
 </body>

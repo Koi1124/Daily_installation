@@ -16,4 +16,9 @@ public class SSDServiceImp implements SSDService {
     public List<SSD> allSSD() {
         return ssdRepository.findAll();
     }
+
+    @Override
+    public SSD findSSDByPrice(int price) {
+        return ssdRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

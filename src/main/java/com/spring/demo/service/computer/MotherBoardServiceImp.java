@@ -17,4 +17,9 @@ public class MotherBoardServiceImp implements MotherBoardService {
     public List<MotherBoard> allMotherBoard() {
         return motherBoardRepository.findAll();
     }
+
+    @Override
+    public MotherBoard findMotherBoardByPrice(int price) {
+        return motherBoardRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

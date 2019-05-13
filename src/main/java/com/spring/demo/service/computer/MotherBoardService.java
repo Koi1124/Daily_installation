@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MotherBoardService {
     List<MotherBoard> allMotherBoard();
+
+    MotherBoard findMotherBoardByPrice(int price);
 }

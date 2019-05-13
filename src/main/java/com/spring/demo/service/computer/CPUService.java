@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CPUService {
     List<CPU> allCPU();
+
+    CPU findCPUByMaxPrice(int price);
 }

@@ -16,4 +16,9 @@ public class MemoryServiceImp implements MemoryService {
     public List<Memory> allMemory() {
         return memoryRepository.findAll();
     }
+
+    @Override
+    public Memory findMemoryByPrice(int price) {
+        return memoryRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

@@ -1,8 +1,10 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.entity.Article;
+import com.spring.demo.entity.Configuration;
 import com.spring.demo.entity.User;
 import com.spring.demo.service.ArticleServiceImp;
+import com.spring.demo.service.ConfigurationServiceImp;
 import com.spring.demo.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class UserController {
     UserServiceImp userServiceImp;
     @Autowired
     ArticleServiceImp articleServiceImp;
+    @Autowired
+    ConfigurationServiceImp configurationServiceImp;
 
     private String userName;
 
@@ -31,6 +35,8 @@ public class UserController {
         map.put("user",userServiceImp.findById(name));
         map.put("articleAmount",list.size());
         map.put("articles",list);
+        List<Configuration> cList = configurationServiceImp.findConfigurationByUserName(name);
+        session.setAttribute("configurations", cList);
         userName=name;
         if (session.getAttribute("user").equals(name)) {
             return "ttzj/testMy";

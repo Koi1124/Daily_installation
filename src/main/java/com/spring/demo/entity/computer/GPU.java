@@ -16,7 +16,7 @@ public class GPU {
     private String gpuName;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @Column(name = "3d_score")
     private int score;
@@ -36,11 +36,11 @@ public class GPU {
         return src;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 

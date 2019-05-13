@@ -90,19 +90,23 @@
 	 padding: 10px 2px;
 }
 .ptable{
+	table-layout: fixed;
 	text-align: center;
 	width: 100%;
-    background-color: transparent;
-    border-collapse:collapse;
+	background-color: transparent;
+	border-collapse:collapse;
 }
 .ptable th{
-	 padding: 8px 2px;
+	padding: 8px 2px;
 	width: 12%;
 }
+
 .ptable td {
-	height: 100px;
-	 padding: 10px 2px;
-	 border: 1px solid black;
+	font-size: 12px;
+	width: 12%;
+	padding: 10px 2px;
+	border: 1px solid black;
+	word-wrap:break-word;
 }
 .changebtn{
    text-align: center;

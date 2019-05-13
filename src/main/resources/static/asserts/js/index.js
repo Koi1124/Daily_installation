@@ -16,7 +16,7 @@ function nextPage(no){
   if(no == -1 && choosePage == pageNumber)
   	return;
   
-  console.log("nextpage: "+no);
+  //console.log("nextpage: "+no);
   var start = (choosePage-1)*6+1;
   var end = Math.min(choosePage*6, infoNumber);
   for(var i=start; i<=end; i++){ 	
@@ -43,7 +43,7 @@ function nextPage(no){
 
 
 function addclick (no){
-  console.log("addclick: "+no);
+  //console.log("addclick: "+no);
   var mypage = document.getElementById("page"+no);
   mypage.onclick =  function(){ nextPage(no); }
 }
@@ -56,14 +56,14 @@ function changePage(type){
   var start = (choosePage-1)*6+1;
   var end = Math.min(choosePage*6, infoNumber);
   for(var i=start; i<=end; i++){  
-      console.log("none: "+ i);
+      //console.log("none: "+ i);
       var one = document.getElementById(chooseType + "-" + i);
       one.style.display = "none";   
   }
   
   chooseType = type;
   for(var i=1; i<=6; i++){    
-      console.log("block: "+i);   
+      //console.log("block: "+i);
       var one = document.getElementById(type + "-" + i);
       one.style.display = "block";  
   }
@@ -107,7 +107,8 @@ function ajax(type)
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {   
-      var text = xmlhttp.responseText;  //接收后台的参数    
+      var text = xmlhttp.responseText;  //接收后台的参数
+      console.log(text);
       infoNumber = 21; //这里要改成实际数量;
       changePage(type);
     }
@@ -198,29 +199,45 @@ function add(type, no){
 
 
 function publish(){
-  var name = document.getElementById("name").value;
-  if(name == ''){
+  if(document.getElementById("name").value == ''){
   	document.getElementById("name").setAttribute("placeholder","方案名称不能为空！");
   	return;
   }
-  var instruct = document.getElementById("instruct").value;
+  //var instruct = document.getElementById("instruct").value;
 
   // 以下为ajax
-  var xmlhttp=new XMLHttpRequest();
+  //var xmlhttp=new XMLHttpRequest();
   
-  xmlhttp.onreadystatechange=function()
-  {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {   
-      var text = xmlhttp.responseText;  //接收后台的参数    
-      document.getElementById("publish").innerHTML = "发表成功";
+  //xmlhttp.onreadystatechange=function()
+  //{
+  //  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+  //  {
+  //    var text = xmlhttp.responseText;  //接收后台的参数
+  //    document.getElementById("publish").innerHTML = "发表成功";
 
-    }
-  }
-  var body = {name:name, instruct: instruct, s1:joinedList[1] }; //发送的数据
-  xmlhttp.open("POST","/publish",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send(body);  // 将配件类型传给后台
+  //  }
+  //}
+  document.getElementById("cpuName").value = document.getElementById("con1").innerText;
+  document.getElementById("cpuImg").value = document.getElementById("pic1").firstChild.src;
+  document.getElementById("motherBoardName").value = document.getElementById("con2").innerText;
+  document.getElementById("motherBoardImg").value = document.getElementById("pic2").firstChild.src;
+  document.getElementById("memoryName").value = document.getElementById("con3").innerText;
+  document.getElementById("memoryImg").value = document.getElementById("pic3").firstChild.src;
+  document.getElementById("hddName").value = document.getElementById("con4").innerText;
+  document.getElementById("hddImg").value = document.getElementById("pic4").firstChild.src;
+  document.getElementById("ssdName").value = document.getElementById("con5").innerText;
+  document.getElementById("ssdImg").value = document.getElementById("pic5").firstChild.src;
+  document.getElementById("gpuName").value = document.getElementById("con6").innerText;
+  document.getElementById("gpuImg").value = document.getElementById("pic6").firstChild.src;
+  document.getElementById("powerSupplyName").value = document.getElementById("con7").innerText;
+  document.getElementById("powerSupplyImg").value = document.getElementById("pic7").firstChild.src;
+  document.getElementById("instruct-form").value = document.getElementById("instruct").innerText;
+  document.forms["formHome"].submit();
+  //var body = {'name':name, 'instruct': instruct, 's1':joinedList }; //发送的数据
+  //console.log(body);
+  //xmlhttp.open("POST","/publish",true);
+  //xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  //xmlhttp.send(body);  // 将配件类型传给后台
 }
 
 

@@ -16,4 +16,10 @@ public class GPUServiceImp implements GPUService {
     public List<GPU> allGPU() {
         return gpuRepository.findAll();
     }
+
+    @Override
+    public GPU findGPUByPrice(int price) {
+        return gpuRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
+
 }

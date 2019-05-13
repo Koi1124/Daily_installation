@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PowerSupplyService {
     List<PowerSupply> allPowerSupply();
+
+    PowerSupply findPowerSupplyByPrice(int price);
 }

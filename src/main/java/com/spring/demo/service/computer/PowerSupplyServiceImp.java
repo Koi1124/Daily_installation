@@ -16,4 +16,9 @@ public class PowerSupplyServiceImp implements PowerSupplyService {
     public List<PowerSupply> allPowerSupply() {
         return powerSupplyRepository.findAll();
     }
+
+    @Override
+    public PowerSupply findPowerSupplyByPrice(int price) {
+        return powerSupplyRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

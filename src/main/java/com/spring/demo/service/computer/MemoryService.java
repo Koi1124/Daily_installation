@@ -7,4 +7,6 @@ import java.util.List;
 public interface MemoryService {
 
     List<Memory> allMemory();
+
+    Memory findMemoryByPrice(int price);
 }

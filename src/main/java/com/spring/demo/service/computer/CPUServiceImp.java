@@ -17,4 +17,9 @@ public class CPUServiceImp implements CPUService {
     public List<CPU> allCPU() {
         return cpuRepository.findAll();
     }
+
+    @Override
+    public CPU findCPUByMaxPrice(int price) {
+        return cpuRepository.findByPriceLessThanEqualOrderByScoreDesc(price).get(0);
+    }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SSDService {
     List<SSD> allSSD();
+
+    SSD findSSDByPrice(int price);
 }

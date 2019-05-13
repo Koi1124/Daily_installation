@@ -16,7 +16,7 @@ public class CPU {
     private String cpuName;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @Column(name = "3d_score")
     private int score;
@@ -43,11 +43,11 @@ public class CPU {
     private String src;
 
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 

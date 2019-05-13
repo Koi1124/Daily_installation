@@ -35,10 +35,10 @@
     <div class="nav">
         <div class="nav-box">
             <ul class="navul">
-                <li id="menu_nav_index"><a class="active" th:href="@{/}">模拟装机</a></li>
-                <li id="menu_nav_zhinao"><a target="_self" href="">装机指南</a></li>
-                <li id="menu_nav_askDiy"><a target="_blank" href="" th:href="@{/forum}">装机论坛</a></li>
-                <li id="menu_nav_Graphics"><a target="_blank" href="">配置天梯</a></li>
+                <li id="menu_nav_index"><a target="_self" class="active" th:href="@{/}">模拟装机</a></li>
+                <li id="menu_nav_zhinao"><a target="_self" th:href="@{/recommend}">装机指南</a></li>
+                <li id="menu_nav_askDiy"><a target="_self" href="" th:href="@{/forum}">装机论坛</a></li>
+                <li id="menu_nav_Graphics"><a target="_self" href="">配置天梯</a></li>
                 <li ><a target="_self" href="" th:href="@{/whatever}" th:if="${#strings.isEmpty(session.user)}">个人中心</a></li>
                 <li id="menu_nav_myplan"><a target="_self" href="" th:href="@{/userInfo(name=${session.user})}" th:if="${not #strings.isEmpty(session.user)}">个人中心</a></li>
             </ul>
@@ -75,10 +75,12 @@
 <!-- body -->
 <div class="wrapper clearfix">
   <!-- 左边栏（配置单） -->
-  <div class="zj-parts"> 
+  <div class="zj-parts">
+    <form  method="post" th:action="@{/publish}" id="formHome" name="formHome" >
 	<div class="zj-parts-head" style="background: #e36209">
 	  我的配置单
 	</div>
+      <input type="hidden" id="userName" th:value="${session.user}" name="userName">
 	  <ul>
 		  <li id="s1" rel="28">
 			  <h3>CPU<i></i></h3>
@@ -86,6 +88,8 @@
 			  <div id="con1" class="zj-parts-con">请选择商品</div>
 			  <span id="link1" class="link-add" >添加</span>
 			  <span id="delete1" class="delete" onclick="funcDel(1)"></span>
+              <input id="cpuName" type="hidden" th:value="0" name="cpuName">
+              <input id="cpuImg" type="hidden" th:value="0" name="cpuImg">
 		  </li>
 		  <li id="s2" rel="5">
 			  <h3>主板<i></i></h3>
@@ -93,6 +97,8 @@
 			  <div id="con2" class="zj-parts-con">请选择商品</div>
 			  <span id="link2" class="link-add" >添加</span>
 			  <span id="delete2" class="delete" onclick="funcDel(2)"></span>
+              <input id="motherBoardName" type="hidden" th:value="0" name="motherBoardName">
+              <input id="motherBoardImg" type="hidden" th:value="0" name="motherBoardImg">
 		  </li>
 		  <li id="s3" rel="3">
 			  <h3>内存<i></i></h3>
@@ -100,6 +106,8 @@
 			  <span id="con3" class="zj-parts-con">请选择商品</span>
 			  <span id="link3" class="link-add" >添加</span>
 			  <span id="delete3" class="delete" onclick="funcDel(3)"></span>
+              <input id="memoryName" type="hidden" th:value="0" name="memoryName">
+              <input id="memoryImg" type="hidden" th:value="0" name="memoryImg">
 		  </li>
 		  <li id="s4" rel="2">
 			  <h3>硬盘</h3>
@@ -107,6 +115,8 @@
 			  <span id="con4" class="zj-parts-con">请选择商品</span>
 			  <span id="link4" class="link-add" >添加</span>
 			  <span id="delete4" class="delete" onclick="funcDel(4)"></span>
+              <input id="hddName" type="hidden" th:value="0" name="hddName">
+              <input id="hddImg" type="hidden" th:value="0" name="hddImg">
 		  </li>
 		  <li id="s5" rel="28">
 			  <h3>固态硬盘<i></i></h3>
@@ -114,6 +124,8 @@
 			  <div id="con5" class="zj-parts-con">请选择商品</div>
 			  <span id="link5" class="link-add" >添加</span>
 			  <span id="delete5" class="delete" onclick="funcDel(5)"></span>
+              <input id= "ssdName" type="hidden" th:value="0" name="ssdName">
+              <input id="ssdImg" type="hidden" th:value="0" name="ssdImg">
 		  </li>
 		  <li id="s6" rel="5">
 			  <h3>显卡<i></i></h3>
@@ -121,6 +133,8 @@
 			  <div id="con6" class="zj-parts-con">请选择商品</div>
 			  <span id="link6" class="link-add" >添加</span>
 			  <span id="delete6" class="delete" onclick="funcDel(6)"></span>
+              <input id="gpuName" type="hidden" th:value="0" name="gpuName">
+              <input id="gpuImg" type="hidden" th:value="0" name="gpuImg">
 		  </li>
 		  <li id="s7" rel="3">
 			  <h3>电源<i></i></h3>
@@ -128,6 +142,8 @@
 			  <span id="con7" class="zj-parts-con">请选择商品</span>
 			  <span id="link7" class="link-add" >添加</span>
 			  <span id="delete7" class="delete" onclick="funcDel(7)"></span>
+              <input id="powerSupplyName" type="hidden" th:value="0" name="powerSupplyName">
+              <input id="powerSupplyImg" type="hidden" th:value="0" name="powerSupplyImg">
 		  </li>
 		  <li class="total">
 			  <span id="totalPrice">¥0</span>
@@ -137,17 +153,19 @@
 	<div class="other-msg">         
       <div class="item mingcheng">
         <p class="lable"><em>0/20</em><b>名称：<font>*</font></b></p>
-        <input type="text" id="name" class="name " value="" date-n="20"/>     
+        <input type="text" id="name" class="name " name="configurationName" value="" date-n="20"/>
       </div>
       <div class="item shuoming">
         <p class="lable"><em>0/200</em><b>说明：</b></p>
-        <textarea id="instruct" class="instruct " placeholder="和大家分享一下你的心得吧~" date-n="200"></textarea>    
+        <textarea id="instruct" class="instruct " placeholder="和大家分享一下你的心得吧~" date-n="200"></textarea>
+        <input id="instruct-form" name="instruct" type="hidden" th:value="0">
       </div>                     
     </div>     
     <div class="btn-box">
-      <a id="publish" class="publish" onclick="publish()">发表</a>
+      <a id="publish" class="publish" onclick="check()">发表</a>
       <a class="empty" onclick="clearAll()">清空</a>
     </div>
+    </form>
   </div>
   <!-- end左边栏（配置单） -->
 
@@ -392,4 +410,18 @@
 </div>
 
 </body>
+
+<script th:inline="javascript">
+    var login=[[@{/toLogin}]]
+    var user=[[${session.user}]]
+    function check() {
+        if (!user) {
+            document.formHome.action=login;
+            document.formHome.submit();
+        }
+        else {
+            publish();
+        }
+    }
+</script>
 </html>
